@@ -1,0 +1,11 @@
+Screen Designer gets you the layout. Extensible Framework is what makes the screen behave.
+
+After a few years implementing HxGN EAM, the pattern I see most is this: teams add UDFs and rearrange tabs, then wonder why planners still skip required steps. The missing piece is usually client-side logic — defaults, dependent fields, role-based enable/disable, custom buttons — without touching Hexagon’s core code.
+
+Extensible Framework sits on the screen as JavaScript hooks (load, field change, before/after save, button actions). Used well, it’s upgrade-friendlier than one-off customizations. Used poorly, it becomes a slow, untested UI layer that duplicates rules the database should own.
+
+My rule of thumb: if it’s convenience or guidance, EF is great. If it’s data law, back it with Flex SQL or a business rule — and still test every user group path.
+
+What’s the most useful EF hook you’ve shipped on a work order or asset screen?
+
+#HxGNEAM #EAM #AssetManagement #Hexagon #MaintenanceManagement

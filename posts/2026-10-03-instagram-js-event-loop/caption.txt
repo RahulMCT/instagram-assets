@@ -1,0 +1,13 @@
+Most people say “JavaScript is single-threaded”… and then freeze when asked why Promise.then runs before setTimeout(0).
+
+That’s the Event Loop.
+
+One call stack. Async work finishes in the host (browser/Node). Callbacks wait in queues. Microtasks (Promises) drain before the next macrotask (timers). That’s why the order is A → D → C → B in today’s sheet.
+
+Save this for your next frontend / Node interview.
+
+Follow @the_codez.rahulrai for daily concept + interview sheets.
+
+Which Event Loop question trips you up the most — order of logs, or what actually blocks the stack?
+
+#javascript #eventloop #webdev #nodejs #frontend #codinginterview #learnjavascript #asyncawait #promises #programming #interviewprep #thecodez
