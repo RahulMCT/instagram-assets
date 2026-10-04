@@ -1,0 +1,11 @@
+Extensible Framework makes the screen feel smart. Flex SQL and Business Rules make the data stay honest.
+
+After implementing HxGN EAM across work orders, assets, and inventory, the pattern is clear: if a rule only lives in the browser, an API call, import, or another client will skip it. Server-side Flex SQL (SQL fired on insert/update/delete events) and Business Rules are where process and integrity actually stick — status guards, required comments, “don’t close if parts aren’t issued,” derived fields, and delete protection when children exist.
+
+Use Extensible Framework for UX: defaults, show/hide, dependent fields. Use Flex SQL / Business Rules when the answer to “must this always be true?” is yes — regardless of how the record was saved. Keep triggers lean, fail with a clear message, and test UI plus API paths. Setup screens vary by EAM version, so treat this as a design pattern and confirm against your org’s docs before promoting.
+
+What’s one server-side rule you’d never trust to client-side JavaScript alone?
+
+Follow for more HxGN EAM consultant notes.
+
+#HxGNEAM #EAM #AssetManagement #Hexagon #MaintenanceManagement

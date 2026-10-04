@@ -1,0 +1,11 @@
+Indexes are not “make my query fast” magic. They’re a trade: faster reads, more work on every write.
+
+An index is a sorted lookup structure (usually a B-Tree) that points to rows so the engine can seek instead of scanning the whole table. Selectivity, composite left-prefix order, and covering indexes decide whether it actually helps. Always verify with EXPLAIN — don’t guess.
+
+Save this for your next SQL / backend interview.
+
+Follow @the_codez.rahulrai for daily concept + interview sheets.
+
+What’s the worst “too many indexes” story you’ve seen on a write-heavy table?
+
+#sql #database #indexes #mysql #postgresql #backend #codinginterview #learnSQL #queryoptimization #programming #interviewprep #thecodez
