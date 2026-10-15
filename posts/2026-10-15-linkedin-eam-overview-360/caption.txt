@@ -1,0 +1,11 @@
+HxGN EAM Overview 360 is one of those screens that quietly turns “open 8 tabs” into one role-ready dashboard.
+
+There are two flavors: Equipment Overview 360 (mostly equipment-sensitive widgets) and Organization Overview 360 (organization-sensitive). You drop in List widgets (Dataspy results), KPI widgets (the same KPIs from KPI Setup / Start Center), Pie / Line / Stacked Bar / Heat Map charts, Cognos HTML Report widgets, and Custom URL widgets — including native OpenCAD SVG/BIM.
+
+Charts need the right column shape (Pie = slice + size; Line = x + y; Bar/Heat Map up to 50 columns). Mark Queries as Normal or they never show in the lookup. For asset focus use :OBJECT / :OBJECTORG (or :ORG on the org screen). Tab grids on Assets/Positions/Systems/Locations support :parameter.object and :parameter.objorganization; List View grids stay system-parameter only.
+
+Configure in Edit Mode (1–3 columns), then Save Template and grant via User Groups → Overview Templates — so planners get a WORK-PLANNER pack without building widgets themselves. Optional 360COLOR install parameter controls chart palettes.
+
+If you’re still asking every user to personalize from scratch, you’re leaving the template model on the table.
+
+#HxGNEAM #EAM #AssetManagement #Hexagon #MaintenanceManagement

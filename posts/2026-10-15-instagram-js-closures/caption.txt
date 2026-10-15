@@ -1,0 +1,12 @@
+Closures look scary in interviews… until you see them as “a function that remembers its birthplace.”
+
+In JavaScript, a closure is a function bundled with its lexical environment — so an inner function can still read/write outer variables even after the outer function has returned. That’s how you get private state (counters, bank balance), factories, debounce, and half of React’s mental model.
+
+Classic trap: var in a for-loop + setTimeout → one shared binding → all 3s. Switch to let and each iteration gets its own binding.
+
+Save this for your next JS round.
+Follow @the_codez.rahulrai for daily interview cheat-sheets.
+
+Which closure question trips you up most — the loop trap, privacy, or memory leaks?
+
+#JavaScript #JS #Closures #WebDev #CodingInterview #Frontend #LearnToCode #Programming #TechTips #SoftwareEngineering #InterviewPrep #CodezRahul
