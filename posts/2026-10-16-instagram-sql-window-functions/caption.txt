@@ -1,0 +1,12 @@
+"Find the 2nd highest salary in each department" — if this SQL question makes you freeze, this cheat-sheet is for you.
+
+Window functions calculate across a group of related rows WITHOUT collapsing them like GROUP BY does. You add OVER(PARTITION BY ... ORDER BY ...) and every row keeps its details plus a rank, running total or previous-row value.
+
+ROW_NUMBER is always unique, RANK leaves gaps after ties (1,2,2,4), DENSE_RANK doesn't (1,2,2,3). And remember: you can't filter a window function in WHERE, so wrap it in a CTE first.
+
+Save this for your next SQL round.
+Follow @the_codez.rahulrai for daily interview cheat-sheets.
+
+RANK or DENSE_RANK for "Nth highest salary" — which one would you use and why? Tell me in the comments 👇
+
+#SQL #WindowFunctions #SQLInterview #DataAnalytics #Database #MySQL #PostgreSQL #CodingInterview #InterviewPrep #LearnSQL #CodezRahul

@@ -1,0 +1,17 @@
+The fastest work order is the one where the technician walks out with everything already in one box.
+
+That is exactly what Inventory Kitting in HxGN EAM is for: pre-staging a set of parts and assets as one kit, while keeping lot tracking and shelf life under control.
+
+A few things I always check when setting it up:
+
+1. Organization Options first. KITLDESC and KITPPULD set Build Kit defaults, LOTIEXPL = NO blocks issuing expired lots, and ISSTOEMP decides whether parts can go to employees (YES / NO / KITS ONLY).
+2. Track as Kit can't be ticked if the part already has transactions, sits on a requisition/PO/RFQ/blanket order, is on another kit template, or has a preferred supplier. Plan kit part codes up front.
+3. Once ticked, EAM forces Track by Lot and Prevent Reorders and sets Tracking Method to Stock. Kits are built from stock, never purchased.
+4. Build Kit uses the Kit Template as a roadmap (Retrieve Parts, pick bin/lot/asset, Build Kit). Breakup Kit brings it back: return to store, move to a repair bin, or mark as used.
+5. The Employee screen's Outstanding Issues tab shows what is still out with whom.
+
+Full cheat-sheet in the image. Save it for your next stores rollout.
+
+Are you using kits in your EAM, or still staging parts on spreadsheets? Follow me for more practical EAM notes.
+
+#HxGNEAM #EAM #AssetManagement #Hexagon #MaintenanceManagement
