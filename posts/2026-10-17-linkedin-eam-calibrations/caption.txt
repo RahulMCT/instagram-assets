@@ -1,0 +1,17 @@
+A scale that reads 2 kg with a 2 kg weight is not calibrated. You still have to prove it across the whole operating range.
+
+That is the core of Calibrations in HxGN EAM (12.3 brief): compare an unknown device reading under a known standard load at defined test points, then document the result on a Work Order.
+
+How I map it in practice:
+
+1. Devices are Equipment. Standards are Parts with the Calibration Standard checkbox (or asset Parts). Associate them on Parts Associated so they copy into the Standards Used popup on the WO Calibration tab.
+2. Build the Calibration tab (tolerances, precision, Default Set) and Test Points tab (Set + Sequence is the primary key; Sequence 0–9999). Categories act as templates; Equipment Configurations + Generate Equipment batch-create devices.
+3. For process loops: Loop checkbox on the loop equipment (it owns the test points). Input instrument Type = Standard applied to; output = Reading taken from.
+4. Type = Calibration on the WO (or PM / Maintenance Pattern with Test Point Set + Calibrations WO Type) copies device header and test points. Calibration Status is calculated from test points: Incomplete, Pass, Pass – Recal Exists, Pass – Fail Exists, Fail.
+5. From v12.0, CALTZERO controls trailing-zero / precision behavior (A/B/C); CALPREC can turn precision off for Output. Use Due, History, Record, Reverse Traceability, and Analysis reports for compliance.
+
+Full cheat-sheet in the image. Save it for your next regulated-site rollout.
+
+Are you calibrating individual instruments only, or full process loops too? Follow me for more practical EAM notes.
+
+#HxGNEAM #EAM #AssetManagement #Hexagon #MaintenanceManagement

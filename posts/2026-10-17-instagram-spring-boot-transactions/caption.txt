@@ -1,0 +1,12 @@
+Your transfer method updated the debit… then crashed before the credit. Without a transaction, money vanished into thin air.
+
+Spring Boot wraps methods with the Transactional annotation via an AOP proxy: begin → run → commit on success. By default it rolls back only on RuntimeException / Error — checked exceptions commit unless you set rollbackFor.
+
+Propagation matters: REQUIRED joins (or starts) a tx; REQUIRES_NEW always opens a fresh one (great for audit logs that must survive a parent rollback). And the classic trap: calling this.myMethod() inside the same class skips the proxy — no transaction at all.
+
+Save this for your next Spring round.
+Follow @the_codez.rahulrai for daily interview cheat-sheets.
+
+REQUIRED or REQUIRES_NEW for an audit log that must persist even when the outer transfer fails? Drop your answer 👇
+
+#SpringBoot #Java #Transactional #SpringFramework #BackendDevelopment #JavaInterview #CodingInterview #InterviewPrep #Microservices #JPA #Hibernate #CodezRahul
