@@ -1,0 +1,21 @@
+Your storeroom is only as accurate as the labels on its bins.
+
+Typing part numbers by hand at the issue counter is where inventory errors begin. HxGN EAM Barcoding (now Octave Attune EAM) prints barcode and QR labels straight from EAM transactions, so the label is created the moment the part moves.
+
+How I set it up:
+
+1. Install with Apache/Tomcat or IIS as the Print Job Receiver. The Barcoding version must match your EAM version.
+2. Flag the users: Administration > Security > Setup, tick HxGN EAM Barcoding. Active users are capped by CDKEY / 7IBCDKEY.
+3. Build label templates on a data source (Parts, Stock, Bins, Equipment, Issue/Return Parts and more). Choose Code 128, Code 39, UPC-A/E or QR, then drag fields into place in the Label Designer.
+4. On the Stores record, set the Label Server URL and a template for each transaction: Receipt, Issue, Store-to-Store, Held Items, Core Return.
+5. Labels then print from Issue/Return Parts, PO Receipts, Non-PO Receipts, held item transfers and EAM Mobile.
+
+My tip: on IIS the URL path PRINTJOBRECEIVER/RECEIVER.ASPX must be in uppercase. It's the first thing I check when labels don't print.
+
+Also, a QR code still holds one string only, not the whole part record.
+
+Full cheat-sheet in the image. Save it for your next stores go-live.
+
+Are your bins labelled from EAM today, or from Excel and a label printer? Tell me in the comments and follow me for more practical EAM notes.
+
+#HxGNEAM #EAM #AssetManagement #Hexagon #MaintenanceManagement
