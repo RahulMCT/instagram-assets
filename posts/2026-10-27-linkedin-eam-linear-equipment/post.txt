@@ -1,0 +1,19 @@
+A road is not one asset. It's 15 miles of asset, and the pothole is at mile 6.
+
+That's the problem Linear Equipment solves in HxGN EAM (now Octave Attune EAM). Roads, rail tracks and pipelines get a length, and work orders can target just a slice of it.
+
+How I set it up:
+
+1. Give the asset an Equipment Length, a Linear Reference UOM and a From Point. A 10-mile highway starting at marker 65 then shows mile 1 as 66.
+2. Pick a Linear Equipment Type (Right of Way, Route, Segment) together with a Direction. Leave both blank and you lose offsets and route tracing.
+3. Add features on the Linear References tab: mileposts, points of interest, related equipment like bus stops, or related parts like ties and gravel. Repeat Every Length creates every milepost in one save.
+4. On the work order, set From/To Point or pick a reference point with an offset, e.g. 25 ft north of the milepost.
+5. For big jobs, Trace Route crosses over between routes through branch points and creates child or MEC work orders, by route or by segment (TRACELEV).
+
+My tip: predefine linear references on the equipment Class. They are copied to every new road or track automatically.
+
+Full cheat-sheet in the image. Save it for your next utilities or transport rollout.
+
+Do you manage linear assets in EAM today, or as hundreds of small point assets? Tell me in the comments and follow me for more practical EAM notes.
+
+#HxGNEAM #EAM #AssetManagement #Hexagon #MaintenanceManagement
