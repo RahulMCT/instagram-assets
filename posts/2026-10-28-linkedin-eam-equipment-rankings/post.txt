@@ -1,0 +1,22 @@
+Most criticality rankings in EAM are set once, at install, by gut feel. And then nobody touches them again.
+
+HxGN EAM has a feature built for exactly this problem: Equipment Rankings. I put the whole setup on one cheat sheet.
+
+Here's how it works:
+✅ Pick a type: Reliability, Condition, Facility Condition, Risk Priority or Criticality Index
+✅ Build a survey tree (up to 3 levels below the top). Questions sit at the bottom, formulas roll the values up
+✅ Answer questions manually, through a query that returns one value, or from the latest checklist result on a completed work order
+✅ The Ranks tab maps the score to an index, so the same answers always give the same rank
+✅ The CALCRANK batch job recalculates on a schedule, and Refresh Sequence lets children run before the parent
+
+Two lessons from real configurations:
+1. Wrap every calculated parameter in COALESCE. One NULL from a query and the formula errors out.
+2. A calculated Criticality overwrites the manual value on the asset, so agree on one source of truth before go-live.
+
+For condition-based ranks you also get age, usage and decay-curve protocols, plus a correction score when an inspection says the asset is in better shape than its age suggests.
+
+How does your team set asset criticality today: a workshop spreadsheet or a scored survey inside EAM? Tell me in the comments.
+
+Follow me for a new HxGN EAM cheat sheet every day.
+
+#HxGNEAM #EAM #AssetManagement #Hexagon #MaintenanceManagement
