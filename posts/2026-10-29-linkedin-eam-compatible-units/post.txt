@@ -1,0 +1,22 @@
+A utility estimator shouldn't have to rebuild "install one pole with a transformer" from scratch for every job.
+
+That's what Compatible Units in HxGN EAM are for. I put the whole flow on one cheat sheet.
+
+Here's how it works:
+✅ The CU Library holds standard templates of labor, parts, tools and services, and child CUs let you build assemblies
+✅ A CU Design Project can hold many CU Estimates, one for each design option
+✅ Each estimate places CUs on work points or spans with an action: Install, Remove, Abandon or Transfer
+✅ Perform Estimation costs only the lines that match that action, so you get a different estimate for an install than for a removal
+✅ Approve a Design estimate, click Generate WO Activities, and EAM fills in Plan Labor, Parts, Plan Tools and a material list on the work order
+
+Two lessons from configuring it:
+1. Give every part line an action type. Labor and tools with a blank action are costed for any action, but a part with a blank action is skipped.
+2. Set the CU standard rates and prices before anyone estimates, or the totals mean nothing.
+
+On top of that, accounting and fixed asset codes produce a FERC Unit Estimate, and overhead codes can add a surcharge by customer type.
+
+How does your team estimate capital work today: inside EAM or in a separate spreadsheet? Tell me in the comments.
+
+Follow me for a new HxGN EAM cheat sheet every day.
+
+#HxGNEAM #EAM #AssetManagement #Hexagon #MaintenanceManagement

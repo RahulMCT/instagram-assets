@@ -1,0 +1,137 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:'Patrick Hand';src:url('file:///usr/share/fonts/truetype/sand-box/google/Patrick Hand/PatrickHand-Regular.ttf')}
+@font-face{font-family:'Kalam';src:url('file:///usr/share/fonts/truetype/sand-box/google/Kalam/Kalam-Regular.ttf')}
+@font-face{font-family:'Kalam';src:url('file:///usr/share/fonts/truetype/sand-box/google/Kalam/Kalam-Bold.ttf');font-weight:700}
+@font-face{font-family:'Roboto Mono';src:url('file:///usr/share/fonts/truetype/sand-box/google/Roboto Mono/RobotoMono-VariableFont_wght.ttf')}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1620px;overflow:hidden}
+body{
+  font-family:'Patrick Hand',Kalam,sans-serif;
+  background:#f7f3e9;
+  background-image:radial-gradient(circle,#d9d0c0 0.7px,transparent 0.8px);
+  background-size:18px 18px;color:#2c2a26;position:relative;
+}
+.spine{position:absolute;left:0;top:0;bottom:0;width:52px;background:linear-gradient(90deg,#c8c0b0,#e8e2d6 40%,#d4cdc0);
+  border-right:1px solid #b8b0a0;z-index:2}
+.ring{position:absolute;left:14px;width:24px;height:18px;border:3px solid #8a8f98;border-radius:10px;background:linear-gradient(#c5cad2,#9aa1ab);box-shadow:inset 0 1px 0 #e8ebf0}
+.page{position:absolute;left:58px;right:18px;top:16px;bottom:16px}
+.title{font-family:Kalam,sans-serif;font-weight:700;font-size:36px;color:#1a5f7a;letter-spacing:.5px;margin-bottom:8px;display:flex;align-items:center;gap:10px}
+.title .badge{font-size:18px;background:#1a5f7a;color:#fff;padding:3px 10px;border-radius:12px;font-family:'Patrick Hand',sans-serif}
+.grid{display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:auto auto auto auto;gap:10px}
+.box{background:#fffef9;border:1.5px solid #cfc6b5;border-radius:10px;padding:10px 12px;box-shadow:1px 2px 0 rgba(0,0,0,.04);min-height:0}
+.box h2{font-family:Kalam,sans-serif;font-size:21px;font-weight:700;margin-bottom:6px;line-height:1.15}
+.box p,.box li{font-size:16px;line-height:1.28;color:#3a3832}
+.box ul{list-style:none;padding:0}
+.box li{padding-left:16px;position:relative;margin-bottom:3px}
+.box li:before{content:'✓';position:absolute;left:0;color:#2d8a5a;font-weight:700;font-size:14px}
+.c1 h2{color:#1a5f7a}.c2 h2{color:#c45c26}.c3 h2{color:#5b4a9e}
+.c4 h2{color:#2d8a5a}.c5 h2{color:#b8860b}.c6 h2{color:#c0392b}
+.c7 h2{color:#1a5f7a}.c8 h2{color:#5b4a9e}.c9 h2{color:#c45c26}
+.code{font-family:'Roboto Mono',monospace;font-size:12px;line-height:1.35;background:#f0ebe0;border:1px solid #ddd4c4;border-radius:6px;padding:7px 8px;margin-top:5px;white-space:pre;color:#2c2a26}
+.note{font-size:14px;background:#eef6f2;border-left:3px solid #2d8a5a;padding:4px 7px;margin-top:5px;border-radius:0 5px 5px 0}
+.warn{font-size:14px;background:#fff3e8;border-left:3px solid #c45c26;padding:4px 7px;margin-top:5px;border-radius:0 5px 5px 0}
+.flow{display:flex;align-items:center;gap:4px;flex-wrap:wrap;margin-top:4px}
+.pill{background:#e8f1f6;border:1px solid #a8c5d4;border-radius:6px;padding:3px 7px;font-size:13px;color:#1a5f7a;font-weight:600}
+.arr{color:#c45c26;font-size:16px}
+.tbl{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:4px}
+.tbl th,.tbl td{border:1px solid #d4cbba;padding:3px 5px;text-align:left}
+.tbl th{background:#f5efe4;color:#1a5f7a;font-weight:700}
+.diag{display:flex;flex-direction:column;align-items:stretch;gap:3px;margin-top:4px}
+.diag .row{display:flex;gap:4px;align-items:center}
+.diag .cell{flex:1;text-align:center;border:1.5px solid #a8c5d4;border-radius:5px;padding:3px 4px;font-size:12.5px;background:#f4f8fb}
+.diag .cell.hot{background:#fff3e8;border-color:#e0a070;color:#c45c26;font-weight:700}
+.diag .cell.ok{background:#eef6f2;border-color:#7ab899;color:#2d8a5a;font-weight:700}
+.bottom{grid-column:1/-1;display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:10px}
+.bottom .box{min-height:180px}
+.iq h2{color:#c45c26 !important}
+.iq ol{padding-left:18px;font-size:14.5px;line-height:1.32}
+.iq li{margin-bottom:4px;padding-left:0}
+.iq li:before{content:none}
+.handle{position:absolute;right:22px;bottom:8px;font-size:15px;color:#8a8274;font-family:'Roboto Mono',monospace}
+.tagline{font-size:15px;color:#6a6458;margin-bottom:10px}
+
+.title{font-size:44px}.title .badge{font-size:20px}
+.tagline{font-size:19px;margin-bottom:12px}
+.grid{gap:12px}
+.box{padding:12px 14px}
+.box h2{font-size:25px}
+.box p,.box li{font-size:18.5px;line-height:1.32}
+.box li:before{font-size:16px}
+.code{font-size:14.2px;line-height:1.4}
+.note,.warn{font-size:16px}
+.tbl{font-size:15.5px}.tbl th,.tbl td{padding:4px 5px}
+.diag{gap:5px}.diag .cell{font-size:15px;padding:5px 4px}
+.pill{font-size:15px}
+.iq ol{font-size:17px;line-height:1.36}
+.bottom .box{min-height:0}
+.handle{font-size:17px}
+
+.grid{gap:11px}
+.box{padding:11px 13px}
+.box h2{font-size:24px;margin-bottom:5px}
+.box p,.box li{font-size:17.5px;line-height:1.28}
+.code{font-size:13.6px;line-height:1.36;padding:6px 8px}
+.tbl{font-size:15px}
+.iq ol{font-size:16.5px;line-height:1.3}
+.grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.bottom{grid-template-columns:minmax(0,1fr) minmax(0,1.3fr) minmax(0,0.85fr)}
+.code{font-size:14.5px;overflow:hidden}
+.box p,.box li{font-size:18px}
+.tbl{font-size:16px}
+.diag .cell{font-size:16px}
+.box p,.box li{font-size:19px;line-height:1.3}
+.box h2{font-size:26px}
+.code{font-size:15.2px}
+.tbl{font-size:16.5px}
+.iq ol{font-size:18px}
+.grid{gap:12px}
+.handle{bottom:1px}
+.grid{gap:9px}
+.box h2{font-size:24px;margin-bottom:3px}
+.box p,.box li{font-size:18.5px;line-height:1.27}
+.tagline{margin-bottom:6px}
+</style></head><body><div class="spine"><div class="ring" style="top:40px"></div>
+<div class="ring" style="top:98px"></div>
+<div class="ring" style="top:156px"></div>
+<div class="ring" style="top:214px"></div>
+<div class="ring" style="top:272px"></div>
+<div class="ring" style="top:330px"></div>
+<div class="ring" style="top:388px"></div>
+<div class="ring" style="top:446px"></div>
+<div class="ring" style="top:504px"></div>
+<div class="ring" style="top:562px"></div>
+<div class="ring" style="top:620px"></div>
+<div class="ring" style="top:678px"></div>
+<div class="ring" style="top:736px"></div>
+<div class="ring" style="top:794px"></div>
+<div class="ring" style="top:852px"></div>
+<div class="ring" style="top:910px"></div>
+<div class="ring" style="top:968px"></div>
+<div class="ring" style="top:1026px"></div>
+<div class="ring" style="top:1084px"></div>
+<div class="ring" style="top:1142px"></div>
+<div class="ring" style="top:1200px"></div>
+<div class="ring" style="top:1258px"></div>
+<div class="ring" style="top:1316px"></div>
+<div class="ring" style="top:1374px"></div>
+<div class="ring" style="top:1432px"></div>
+<div class="ring" style="top:1490px"></div>
+<div class="ring" style="top:1548px"></div>
+<div class="ring" style="top:1606px"></div></div><div class="page"><style>.box p,.box li{font-size:19.5px;line-height:1.25}.box h2{font-size:23px;margin-bottom:4px}.tbl{font-size:17.5px}.note,.warn{font-size:17px}.tbl th,.tbl td{padding:2px 6px}.iq ol{font-size:19px;line-height:1.26}.pill{font-size:16px}.grid{gap:10px}.handle{bottom:-12px}.box{padding:9px 12px}.tagline{font-size:19px;margin-bottom:9px}.code{font-family:Consolas,'DejaVu Sans Mono',monospace;background:#f1f5f9;border:1px dashed #94a3b8;border-radius:6px;padding:5px 7px;margin:4px 0;line-height:1.3;font-size:15.5px}</style>
+<div class="title">⚡ HxGN EAM Compatible Units <span class="badge">CHEAT SHEET</span></div>
+<div class="tagline">Estimate utility projects from standard building blocks, then push the approved estimate straight into a work order. (Infor EAM 11.7 brief)</div>
+<div class="grid">
+<div class="box c1"><h2>1. Key terms</h2><ul><li><b>CU Library record</b>: template of labor, parts, tools, services (+ Child CUs)</li><li><b>CU Design Project</b>: project flagged for CUs; many estimates</li><li><b>CU Estimate</b>: work points + CUs → total cost</li><li><b>Work Point</b> / <b>Span</b> (a length, e.g. a trench)</li></ul></div>
+<div class="box c2"><h2>2. Setup before use</h2><ul><li>Screen Designer: show <b>Available for CUs</b> (Trades, Tools, Parts, Departments)</li><li>Show <b>CU Standard Rate / Price</b> fields</li><li>System Codes: CUAJ adjustments L0–L9, M0–M9, T0–T9</li><li>Activity Type codes (ACTP)</li><li>Status authorizations for PROJ, CUES, CULB (delivered for R5)</li></ul></div>
+<div class="box c3"><h2>3. Org Options</h2><table class="tbl"><tr><th>Option</th><th>Controls</th></tr><tr><td>CUESFERC</td><td>Generate FERC Unit Estimate</td></tr><tr><td>CUESOVHD</td><td>Apply overhead codes</td></tr><tr><td>CUESREMV</td><td>Remove labor % of Install</td></tr><tr><td>CUESTRFR</td><td>Transfer labor % of Install</td></tr><tr><td>CUESSPMT</td><td>Span overage % for length parts</td></tr></table></div>
+<div class="box c4"><h2>4. Four estimate types</h2><table class="tbl"><tr><th>Type</th><th>Use</th></tr><tr><td>Cost Only</td><td>Cost estimate only</td></tr><tr><td><b>Design</b></td><td>Cost + Generate WO Activities</td></tr><tr><td>As-Built</td><td>True-up actuals (cost only)</td></tr><tr><td>Template</td><td>Copy into Design estimates</td></tr></table><div class="note">Since 11.7 the CU Design WO sits on the estimate, not the project.</div></div>
+<div class="box c5"><h2>5. Action Type selection</h2><ul><li>Actions: <b>Install, Remove, Abandon, Transfer</b></li><li>Only lines with the <b>same</b> action are costed</li><li>Blank action: labor/tools/services count for any action</li><li>Parts need an <b>exact</b> action match</li><li>Adjustment fields must match too (or be blank)</li></ul></div>
+<div class="box c6"><h2>6. Estimate status (CUES)</h2><div class="flow" style="flex-wrap:wrap;row-gap:4px"><span class="pill">Not Estimated</span><span class="arr">→</span><span class="pill">Estimated</span><span class="arr">→</span><span class="pill">Quoted</span><span class="arr">→</span><span class="pill">Approved</span></div><ul><li>After Not Estimated, Work Points / Suppliers / CU tabs are <b>protected</b></li><li>To edit: set back to Not Estimated, re-estimate</li></ul></div>
+<div class="box c7"><h2>7. Worked example (Install)</h2><div class="code">Pole assembly = Pole + 2 Crossarm + Transformer<br>Labor 6 h × $40      = $240<br>Parts 500+2×200+1000 = $1,900<br>Tools 1.5 h × $100   = $150<br>Total                = $2,290</div><div class="note">Brief's example uses CU standard rates/prices.</div></div>
+<div class="box c8"><h2>8. Generate WO Activities</h2><ul><li>Only <b>Design</b> type in <b>Approved</b> status</li><li>Deletes existing deletable activities first</li><li>One activity per CU; creates Plan Labor, Parts, Plan Tools + material list</li><li>Services → <b>hired labor</b> lines</li><li>Same Activity Type → merged into one activity</li></ul></div>
+<div class="box c1" style="grid-column:1 / span 2"><h2>9. Costing add-ons</h2><table class="tbl"><tr><th>Screen</th><th>What it does</th></tr><tr><td><b>CU Accounting Codes</b></td><td>Accounting Code + Regulatory Account (e.g. POLES → FERC 364); optional CapEx flag</td></tr><tr><td><b>CU Fixed Asset Codes</b></td><td>Finer level inside an accounting code; feed the FERC Unit Estimate tab</td></tr><tr><td><b>CU Overhead Codes</b></td><td>Apply To Labor / Parts-Stock / Parts-Non-stock / Services / Tools; factor 10 = 10% surcharge; Overhead Type (OVTP) e.g. Government vs Private</td></tr><tr><td><b>Copy CU Estimate</b></td><td>Template → Design, or Design → As-Built</td></tr></table></div>
+<div class="bottom">
+<div class="box" style="border-color:#1a5f7a"><h2 style="color:#1a5f7a">10a. Estimator flow</h2><div class="flow" style="flex-wrap:wrap;row-gap:4px"><span class="pill">CU Library</span><span class="arr">→</span><span class="pill">CU Design Project</span><span class="arr">→</span><span class="pill">CU Estimate + Work Points</span><span class="arr">→</span><span class="pill">Perform Estimation</span><span class="arr">→</span><span class="pill">Quote / Approve</span><span class="arr">→</span><span class="pill">Generate WO Activities</span></div></div>
+<div class="box iq"><h2>10b. Consultant tips</h2><ol><li>Give every part line an action</li><li>Set CU rates before estimating</li><li>Use Activity Type to group work</li><li>Keep a Template per job type</li></ol></div>
+<div class="box" style="border-color:#2d8a5a"><h2 style="color:#2d8a5a">10c. Key points</h2><ul><li>Same job, same estimate</li><li>Design to WO in one click</li><li>FERC-ready cost split</li></ul></div>
+</div></div><div class="handle">Rahul Kumar</div></div></body></html>
