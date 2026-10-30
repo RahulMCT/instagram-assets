@@ -1,0 +1,22 @@
+Your utility bills already hold half of your carbon report. HxGN EAM can turn them into CO2e numbers.
+
+I put the whole CO2e tracking setup from the Infor EAM Asset Sustainability brief on one cheat sheet.
+
+Here's how it works:
+✅ The Greenhouse Gases screen stores each gas with its ratio to CO2 (methane 21:1, SF6 23,900:1 in the brief), and the CO2EUOM install parameter sets the unit, such as lbs.
+✅ For Scope-2, you define Electricity as a commodity, record the utility's fuel mix on the Supplier, and enter the gases each fuel emits per MWH
+✅ Equipment counts only when both Utility Bill Level and GAS Tracked are checked
+✅ Enter the utility bill on a Non-PO invoice voucher, approve it, and the nightly GDRV process updates the CO2e tables
+✅ For Scope-1, tick Leak when a refrigerant part is issued to refill a system, and that leaked gas is counted
+
+Two lessons for consultants:
+1. Keep the Fuel Mix date-effective, because the utility's mix changes over time.
+2. Train the stores team on the Leak check box. If nobody ticks it, your Scope-1 number stays at zero.
+
+Three reports then show CO2e by gas, by Scope category, and by equipment.
+
+Is your organization reporting carbon from EAM data yet, or still from spreadsheets? Tell me in the comments.
+
+Follow me for a new HxGN EAM cheat sheet every day.
+
+#HxGNEAM #EAM #AssetManagement #Hexagon #Sustainability
