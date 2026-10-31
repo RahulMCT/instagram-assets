@@ -1,0 +1,23 @@
+Most EAM integrations I see still hard-code their endpoints. OData in HxGN EAM lets the client discover them instead.
+
+I put the whole OData setup from the HxGN EAM 12.3 brief on one cheat sheet.
+
+Here's how it works:
+✅ The Service document at /axis/odataservices lists every supported entity, and $metadata gives each entity's properties and key fields. Neither call needs credentials.
+✅ Six operations map to HTTP verbs: GET for one record or a collection, POST to add, PUT to sync the full record, PATCH for partial updates, and DELETE
+✅ Keys go in the URL, like Lots(LOTCODE='L1',ORGANIZATIONCODE='ORG1'). Strings take quotes, numbers don't.
+✅ Get Collection supports $filter, $count, $top and $skip, and it returns rows from the entity's default Dataspy
+✅ Headers carry tenant, organization, and parentid (only for tab entities like Task Plan Checklists)
+
+Three gotchas from real testing:
+1. Dates need YEAR as YYYY. Epoch milliseconds aren't supported.
+2. $filter doesn't work yet on DATETIME, QUANTITY or AMOUNT fields.
+3. A # in a code must be sent as %23.
+
+The 12.3 brief lists Assets, Positions, Systems, Nonconformities, Case Management, Lots and Task Plans, plus some of their tabs.
+
+Are you using OData or the classic REST APIs for your EAM integrations? Tell me in the comments.
+
+Follow me for a new HxGN EAM cheat sheet every day.
+
+#HxGNEAM #EAM #AssetManagement #Hexagon #MaintenanceManagement
