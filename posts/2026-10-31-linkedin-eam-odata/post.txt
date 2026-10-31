@@ -9,7 +9,7 @@ Here's how it works:
 ✅ Get Collection supports $filter, $count, $top and $skip, and it returns rows from the entity's default Dataspy
 ✅ Headers carry tenant, organization, and parentid (only for tab entities like Task Plan Checklists)
 
-Three gotchas from real testing:
+Three gotchas worth knowing:
 1. Dates need YEAR as YYYY. Epoch milliseconds aren't supported.
 2. $filter doesn't work yet on DATETIME, QUANTITY or AMOUNT fields.
 3. A # in a code must be sent as %23.
