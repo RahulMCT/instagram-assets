@@ -1,0 +1,22 @@
+Most maintenance teams still rank risk by gut feel. RCM in HxGN EAM turns it into a number you can defend.
+
+I put the full Reliability Centered Maintenance setup from the Infor EAM RCM brief on one cheat sheet.
+
+Here's how it fits together:
+✅ Each RCM Project (System Codes entity STPR) gets its own Risk Matrix: Consequence Categories, Probabilities and Risk Levels
+✅ Risk Priority Number = Probability Rating × Consequence Severity, and the highest RPN on the RCM tab sets the equipment's Risk Level
+✅ Three RCM Levels: Risk Assessment for lines and locations, Risk Analysis (adds Failure Modes) for lower-level equipment, and FMECA
+✅ The Failure Mitigation tab links Failure Modes to PM Schedules, Maintenance Patterns or PM Plans, and Activate Mitigation attaches the equipment for you
+✅ Black Swan flags low-probability, high-cost events that would otherwise never drive the RPN
+
+Two gotchas from projects:
+1. Changing the Risk Matrix doesn't trickle down to existing assessments. Re-check the RCM tabs.
+2. Imported mitigation from an RCM Template always arrives with Mitigation Applied unticked.
+
+Then the Equipment at Risk and Potential Yearly Savings reports show where to add PMs and where you may be over-maintaining.
+
+Have you rolled out RCM in EAM, or is criticality still a spreadsheet at your site? Tell me in the comments.
+
+Follow me for a new HxGN EAM cheat sheet every day.
+
+#HxGNEAM #EAM #AssetManagement #Hexagon #MaintenanceManagement
