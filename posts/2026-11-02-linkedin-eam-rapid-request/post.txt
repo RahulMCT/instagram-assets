@@ -1,0 +1,20 @@
+Your requesters shouldn't need an EAM login to report a broken light. HxGN EAM Rapid Request lets them do it from their phone.
+
+I put the full setup from the HxGN EAM Rapid Request brief (12.1) on one cheat sheet.
+
+Here's how it fits together:
+✅ It runs on iPhone, iPad and Android devices, plus industrial devices on Windows CE, and needs the Customer Service Request CD key (7ISCDKEY), the same key as the Service Request Portal
+✅ You design the Report Case screen in Screen Designer: log in as R5, press Ctrl + F2 and jump to CSRAPD
+✅ On first launch the user enters the server URL, and the Organization Option MOBASCAN can set a custom image as the Home screen background
+✅ Contacts are matched on First Name, Last Name, Address1 and Email, so the same person keeps one ID
+✅ Each new case carries a description, a picture and location, lands on the Call Center screen, and records latitude and longitude
+
+Two gotchas from projects:
+1. The Jump to Screen pop-up only opens when the screen isn't cached.
+2. Recent Cases only shows a user's cases when the same contact information is attached.
+
+Are your requesters still calling or emailing the maintenance desk, or have you gone mobile? Tell me in the comments.
+
+Follow me for a new HxGN EAM cheat sheet every day.
+
+#HxGNEAM #EAM #AssetManagement #Hexagon #MaintenanceManagement
