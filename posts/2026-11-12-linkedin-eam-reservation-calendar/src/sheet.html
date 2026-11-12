@@ -1,0 +1,244 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>/* Octave Attune EAM LinkedIn cheat-sheet theme
+   Colours from octave.com CSS tokens (--oct-*), Nov 2026.
+   Fonts: Inter / Geist Mono stand in for proprietary Octave Sans / Display.
+   Do NOT embed the Octave logo (trademark). */
+
+@font-face{font-family:'Inter';src:url('file:///usr/share/fonts/truetype/sand-box/google/Inter/Inter-VariableFont_opsz,wght.ttf');font-weight:100 900;font-style:normal}
+@font-face{font-family:'Geist Mono';src:url('file:///usr/share/fonts/truetype/sand-box/google/Geist Mono/GeistMono-VariableFont_wght.ttf');font-weight:100 900;font-style:normal}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1350px;overflow:hidden}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:#1a1a1f;
+  color:#e7ebf2;
+  position:relative;
+}
+/* subtle orbit / wireframe feel — no logo */
+body::before{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse 80% 50% at 110% -10%, rgba(0,0,255,.18), transparent 55%),
+    radial-gradient(ellipse 60% 40% at -15% 110%, rgba(244,102,0,.14), transparent 50%),
+    radial-gradient(ellipse 50% 35% at 90% 90%, rgba(255,0,199,.10), transparent 55%);
+}
+body::after{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.35;
+  background:
+    repeating-linear-gradient(115deg, transparent 0 46px, rgba(178,183,196,.04) 46px 47px);
+}
+
+.frame{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;padding:18px 24px 14px}
+.accent-bar{
+  height:4px;border-radius:2px;margin-bottom:10px;flex:0 0 auto;
+  background:linear-gradient(90deg,#0000ff 0%,#03ffff 22%,#f46600 48%,#ff00c7 74%,#9933ff 100%);
+}
+
+.header{flex:0 0 auto;margin-bottom:8px}
+.eyebrow{
+  display:flex;align-items:center;gap:10px;margin-bottom:6px;
+  font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#b2b7c4;font-weight:600;
+}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:#03ffff;box-shadow:0 0 8px #03ffff}
+.product{
+  font-size:14px;color:#6f7480;font-weight:500;letter-spacing:.02em;margin-bottom:8px;
+}
+.title{
+  font-size:32px;font-weight:700;color:#fff;letter-spacing:-.02em;line-height:1.15;
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+}
+.title .badge{
+  font-size:12px;font-weight:700;letter-spacing:.14em;
+  background:linear-gradient(90deg,#0000ff,#03ffff);
+  color:#fff;padding:5px 10px;border-radius:999px;text-transform:uppercase;
+}
+.tagline{font-size:15px;color:#b2b7c4;margin-top:6px;line-height:1.35;font-weight:450}
+
+.grid{
+  flex:1 1 auto;min-height:0;
+  display:grid;grid-template-columns:1fr 1fr;gap:9px;align-content:stretch;
+}
+.box{
+  background:rgba(62,64,71,.55);
+  border:1px solid rgba(178,183,196,.18);
+  border-radius:10px;
+  padding:9px 11px;
+  position:relative;
+  overflow:hidden;
+  backdrop-filter:blur(2px);
+}
+.box::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:var(--accent,#03ffff);
+}
+.box h2{
+  font-size:17px;font-weight:700;color:var(--accent,#03ffff);
+  margin-bottom:5px;line-height:1.2;letter-spacing:-.01em;
+}
+.box p,.box li{font-size:14.2px;line-height:1.30;color:#e7ebf2;font-weight:450}
+.box ul{list-style:none;padding:0}
+.box li{padding-left:14px;position:relative;margin-bottom:3px}
+.box li:before{
+  content:'';position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:1px;
+  background:var(--accent,#03ffff);opacity:.85;
+}
+.box b,.box strong{color:#fff;font-weight:650}
+
+/* accent cycle for numbered sections */
+.c1{--accent:#03ffff}.c2{--accent:#f46600}.c3{--accent:#7890ee}
+.c4{--accent:#4fff00}.c5{--accent:#ff00c7}.c6{--accent:#fff500}
+.c7{--accent:#03ffff}.c8{--accent:#9933ff}.c9{--accent:#f46600}.c10{--accent:#1e88e5}
+
+.code{
+  font-family:'Geist Mono',ui-monospace,monospace;
+  font-size:12.5px;line-height:1.4;color:#e7ebf2;
+  background:rgba(26,26,31,.75);
+  border:1px dashed rgba(178,183,196,.28);
+  border-radius:6px;padding:6px 8px;margin:4px 0 6px;
+  white-space:pre-wrap;word-break:break-word;
+}
+.tbl{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:4px}
+.tbl th,.tbl td{
+  border:1px solid rgba(178,183,196,.22);
+  padding:3px 6px;text-align:left;color:#e7ebf2;
+}
+.tbl th{
+  background:rgba(0,0,255,.22);color:#fff;font-weight:650;
+}
+.flow{display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin-top:4px;row-gap:6px}
+.pill{
+  background:rgba(0,0,255,.18);
+  border:1px solid rgba(3,255,255,.35);
+  border-radius:6px;padding:4px 8px;
+  font-size:12.5px;color:#03ffff;font-weight:650;
+}
+.arr{color:#f46600;font-size:14px;font-weight:700}
+
+.bottom{
+  grid-column:1/-1;
+  display:grid;grid-template-columns:1.15fr 1.05fr .9fr;gap:10px;
+}
+.bottom .box{min-height:0}
+.iq h2{color:#f46600}
+.iq{--accent:#f46600}
+.iq ol{padding-left:18px;font-size:13.5px;line-height:1.35;color:#e7ebf2}
+.iq li{margin-bottom:3px;padding-left:0}
+.iq li:before{content:none;display:none}
+.kp{--accent:#4fff00}
+.kp h2{color:#4fff00}
+.flowbox{--accent:#03ffff}
+.flowbox h2{color:#03ffff}
+
+.footer{
+  flex:0 0 auto;display:flex;justify-content:space-between;align-items:center;
+  margin-top:8px;padding-top:7px;
+  border-top:1px solid rgba(178,183,196,.16);
+  font-size:12px;color:#6f7480;
+}
+.footer .handle{font-family:'Geist Mono',monospace;color:#b2b7c4;font-size:13px}
+.footer .note{letter-spacing:.04em}
+</style></head>
+<body>
+<div class="frame">
+  <div class="accent-bar"></div>
+  <div class="header">
+  <div class="eyebrow"><span class="dot"></span>Asset Performance · Attune EAM</div>
+  <div class="product">Octave Attune EAM (formerly HxGN EAM)</div>
+  <div class="title">Reservation Calendar <span class="badge">Cheat sheet</span></div>
+  <div class="tagline">Book pool, loaner and other equipment on a drag-and-drop calendar.</div>
+</div>
+<div class="grid">
+<div class="box c1"><h2>1. What it is</h2><ul>
+<li><b>Request</b> and <b>reserve</b> equipment on a calendar-style screen</li>
+<li>Drag blocks to change <b>start / end</b> times, Outlook-style</li>
+<li>Found under the <b>Equipment</b> menu</li>
+<li>Extra <b>Standalone (calendar) view</b> per equipment</li>
+</ul></div>
+<div class="box c2"><h2>2. Screen Setup: Reservation Calendar tab</h2><ul>
+<li>Defaults for the screen <b>and its clones</b></li>
+<li><b>Scheduler View</b>: Minute (15 min) / Hour / Day</li>
+<li><b>Block Duration</b> for double-click creates (changes with view)</li>
+<li><b>Working Start/End Times</b>: outside hours greyed out</li>
+<li><b>Popup Function</b>: pick a copy of the details popup</li>
+</ul></div>
+<div class="box c3"><h2>3. Reservation types</h2>
+<table class="tbl"><tr><th>Type</th><th>Equipment shown</th><th>Statuses here</th></tr>
+<tr><td>Pool</td><td>Marked <b>Reservable Equipment</b></td><td>Request / Reserved / Cancelled</td></tr>
+<tr><td>Loaner</td><td>Marked <b>Contract Equipment</b></td><td>Request / Reserved / Cancelled</td></tr>
+<tr><td>Other</td><td>All other equipment + <b>Locations</b></td><td>Reserved / Cancelled</td></tr>
+</table><ul><li>Other records are <b>NOT</b> shown on the Reservations screen</li></ul></div>
+<div class="box c4"><h2>4. Screen layout</h2><ul>
+<li><b>Equipment grid</b> (left): Pool, Loaner or Other list</li>
+<li><b>Scheduler grid</b> (right): Minute, Hour or Day calendar</li>
+<li>Filter equipment by <b>type and class</b> on Screen Setup tabs</li>
+<li><b>Go To Day</b> jumps to any date</li>
+</ul></div>
+<div class="box c5"><h2>5. Create a reservation</h2>
+<div class="code">Double-click empty slot → Block Duration
+Click + drag + release  → ends where mouse released
+        ↓
+Details popup → also creates a record
+on the Reservations screen (Pool/Loaner)</div></div>
+<div class="box c6"><h2>6. Modify &amp; delete</h2><ul>
+<li>Double-click block → edit times in popup</li>
+<li>Drag the ends, or drag-drop within the row</li>
+<li>Drop on <b>another row</b> = change equipment (popup opens if Org differs)</li>
+<li>Right-click → <b>Delete Event</b>: removes block only, <b>not</b> the Reservations record</li>
+</ul></div>
+<div class="box c7"><h2>7. Who can edit</h2>
+<table class="tbl"><tr><th>Calendar Owner (on equipment)</th><th>Can edit</th></tr>
+<tr><td>Blank</td><td>Only the <b>Created</b> user</td></tr>
+<tr><td>A user</td><td>That owner + Created user</td></tr>
+<tr><td><b>*</b></td><td>All EAM users</td></tr>
+<tr><td>Owners List</td><td>Users on an approval list marked <b>Reservation Calendar Owner</b></td></tr>
+</table></div>
+<div class="box c8"><h2>8. Private flag</h2><ul>
+<li>Only the creating user sees the check box</li>
+<li>For non-owners: popup <b>won't open</b></li>
+<li>Block <b>description hidden</b></li>
+<li>No drag / drop / edit</li>
+</ul></div>
+<div class="box c9"><h2>9. Transition times</h2><ul>
+<li><b>Travel From / Travel To / Setup / Tear Down</b></li>
+<li>Shown as <b>grey shading</b> outside the block</li>
+<li><b>All Day</b> = spans the whole day</li>
+<li>Status colours set on <b>System Codes</b></li>
+</ul></div>
+<div class="box c10"><h2>10. Calendar view</h2><ul>
+<li>Double-click an equipment record to open it</li>
+<li>Days = columns, time = rows</li>
+<li>Only for <b>Minute or Hour</b> view</li>
+<li>Same create / edit rules apply</li>
+<li>WO, Project, Suppliers, E-Mail Recipients: <b>info only</b></li>
+</ul></div>
+<div class="bottom">
+<div class="box flowbox"><h2>Flow</h2>
+<div class="flow">
+<span class="pill">Screen Setup</span><span class="arr">→</span>
+<span class="pill">Pick equipment</span><span class="arr">→</span>
+<span class="pill">Drag a block</span><span class="arr">→</span>
+<span class="pill">Popup details</span><span class="arr">→</span>
+<span class="pill">Reservation</span>
+</div></div>
+<div class="box iq"><h2>Consultant tips</h2>
+<ol>
+<li>Set Calendar Owner first</li>
+<li>Colour statuses in System Codes</li>
+<li>Other type = calendar only</li>
+</ol></div>
+<div class="box kp"><h2>Key points</h2>
+<ul>
+<li>Delete Event ≠ delete record</li>
+<li>Day view: working days, no hours</li>
+<li>* owner = everyone edits</li>
+</ul></div>
+</div>
+
+</div>
+  <div class="footer">
+    <span class="note">Not affiliated with Octave · educational summary</span>
+    <span class="handle">Rahul Kumar</span>
+  </div>
+</div>
+</body></html>
