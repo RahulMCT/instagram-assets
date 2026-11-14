@@ -1,0 +1,246 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>/* Octave Attune EAM LinkedIn cheat-sheet theme
+   Colours from octave.com CSS tokens (--oct-*), Nov 2026.
+   Fonts: Inter / Geist Mono stand in for proprietary Octave Sans / Display.
+   Do NOT embed the Octave logo (trademark). */
+
+@font-face{font-family:'Inter';src:url('file:///usr/share/fonts/truetype/sand-box/google/Inter/Inter-VariableFont_opsz,wght.ttf');font-weight:100 900;font-style:normal}
+@font-face{font-family:'Geist Mono';src:url('file:///usr/share/fonts/truetype/sand-box/google/Geist Mono/GeistMono-VariableFont_wght.ttf');font-weight:100 900;font-style:normal}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1350px;overflow:hidden}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:#1a1a1f;
+  color:#e7ebf2;
+  position:relative;
+}
+/* subtle orbit / wireframe feel — no logo */
+body::before{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse 80% 50% at 110% -10%, rgba(0,0,255,.18), transparent 55%),
+    radial-gradient(ellipse 60% 40% at -15% 110%, rgba(244,102,0,.14), transparent 50%),
+    radial-gradient(ellipse 50% 35% at 90% 90%, rgba(255,0,199,.10), transparent 55%);
+}
+body::after{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.35;
+  background:
+    repeating-linear-gradient(115deg, transparent 0 46px, rgba(178,183,196,.04) 46px 47px);
+}
+
+.frame{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;padding:18px 24px 14px}
+.accent-bar{
+  height:4px;border-radius:2px;margin-bottom:10px;flex:0 0 auto;
+  background:linear-gradient(90deg,#0000ff 0%,#03ffff 22%,#f46600 48%,#ff00c7 74%,#9933ff 100%);
+}
+
+.header{flex:0 0 auto;margin-bottom:8px}
+.eyebrow{
+  display:flex;align-items:center;gap:10px;margin-bottom:6px;
+  font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#b2b7c4;font-weight:600;
+}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:#03ffff;box-shadow:0 0 8px #03ffff}
+.product{
+  font-size:14px;color:#6f7480;font-weight:500;letter-spacing:.02em;margin-bottom:8px;
+}
+.title{
+  font-size:32px;font-weight:700;color:#fff;letter-spacing:-.02em;line-height:1.15;
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+}
+.title .badge{
+  font-size:12px;font-weight:700;letter-spacing:.14em;
+  background:linear-gradient(90deg,#0000ff,#03ffff);
+  color:#fff;padding:5px 10px;border-radius:999px;text-transform:uppercase;
+}
+.tagline{font-size:15px;color:#b2b7c4;margin-top:6px;line-height:1.35;font-weight:450}
+
+.grid{
+  flex:1 1 auto;min-height:0;
+  display:grid;grid-template-columns:1fr 1fr;gap:9px;align-content:stretch;
+}
+.box{
+  background:rgba(62,64,71,.55);
+  border:1px solid rgba(178,183,196,.18);
+  border-radius:10px;
+  padding:9px 11px;
+  position:relative;
+  overflow:hidden;
+  backdrop-filter:blur(2px);
+}
+.box::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:var(--accent,#03ffff);
+}
+.box h2{
+  font-size:17px;font-weight:700;color:var(--accent,#03ffff);
+  margin-bottom:5px;line-height:1.2;letter-spacing:-.01em;
+}
+.box p,.box li{font-size:14.2px;line-height:1.30;color:#e7ebf2;font-weight:450}
+.box ul{list-style:none;padding:0}
+.box li{padding-left:14px;position:relative;margin-bottom:3px}
+.box li:before{
+  content:'';position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:1px;
+  background:var(--accent,#03ffff);opacity:.85;
+}
+.box b,.box strong{color:#fff;font-weight:650}
+
+/* accent cycle for numbered sections */
+.c1{--accent:#03ffff}.c2{--accent:#f46600}.c3{--accent:#7890ee}
+.c4{--accent:#4fff00}.c5{--accent:#ff00c7}.c6{--accent:#fff500}
+.c7{--accent:#03ffff}.c8{--accent:#9933ff}.c9{--accent:#f46600}.c10{--accent:#1e88e5}
+
+.code{
+  font-family:'Geist Mono',ui-monospace,monospace;
+  font-size:12.5px;line-height:1.4;color:#e7ebf2;
+  background:rgba(26,26,31,.75);
+  border:1px dashed rgba(178,183,196,.28);
+  border-radius:6px;padding:6px 8px;margin:4px 0 6px;
+  white-space:pre-wrap;word-break:break-word;
+}
+.tbl{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:4px}
+.tbl th,.tbl td{
+  border:1px solid rgba(178,183,196,.22);
+  padding:3px 6px;text-align:left;color:#e7ebf2;
+}
+.tbl th{
+  background:rgba(0,0,255,.22);color:#fff;font-weight:650;
+}
+.flow{display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin-top:4px;row-gap:6px}
+.pill{
+  background:rgba(0,0,255,.18);
+  border:1px solid rgba(3,255,255,.35);
+  border-radius:6px;padding:4px 8px;
+  font-size:12.5px;color:#03ffff;font-weight:650;
+}
+.arr{color:#f46600;font-size:14px;font-weight:700}
+
+.bottom{
+  grid-column:1/-1;
+  display:grid;grid-template-columns:1.15fr 1.05fr .9fr;gap:10px;
+}
+.bottom .box{min-height:0}
+.iq h2{color:#f46600}
+.iq{--accent:#f46600}
+.iq ol{padding-left:18px;font-size:13.5px;line-height:1.35;color:#e7ebf2}
+.iq li{margin-bottom:3px;padding-left:0}
+.iq li:before{content:none;display:none}
+.kp{--accent:#4fff00}
+.kp h2{color:#4fff00}
+.flowbox{--accent:#03ffff}
+.flowbox h2{color:#03ffff}
+
+.footer{
+  flex:0 0 auto;display:flex;justify-content:space-between;align-items:center;
+  margin-top:8px;padding-top:7px;
+  border-top:1px solid rgba(178,183,196,.16);
+  font-size:12px;color:#6f7480;
+}
+.footer .handle{font-family:'Geist Mono',monospace;color:#b2b7c4;font-size:13px}
+.footer .note{letter-spacing:.04em}
+</style></head>
+<body>
+<div class="frame">
+  <div class="accent-bar"></div>
+  <div class="header">
+  <div class="eyebrow"><span class="dot"></span>Asset Performance · Attune EAM</div>
+  <div class="product">Octave Attune EAM (formerly HxGN EAM)</div>
+  <div class="title">Operator Checklist <span class="badge">Cheat sheet</span></div>
+  <div class="tagline">Equipment checks by the operator without a work order: fill, sign, review, complete.</div>
+</div>
+<div class="grid">
+<div class="box c1"><h2>1. What it is</h2><ul>
+<li>Fast equipment checklist entry by the <b>operator</b>, <b>no work order</b> needed</li>
+<li>Select Equipment → Task Plan → Save / Checklist → fill items</li>
+<li>Results go to supervisor <b>review</b> or straight to <b>completion</b></li>
+<li>Min. setup: a task plan with a checklist + equipment</li>
+</ul></div>
+<div class="box c2"><h2>2. Screen Setup tab</h2><ul>
+<li>Header must be <b>WSOPCL</b> (Operator Checklist) or a clone</li>
+<li><b>Equipment Class</b> → allowed <b>Task Plan(s)</b>; * class in * org for unclassed equipment</li>
+<li><b>Default</b> auto-fills the task plan; use only ONE (multiple = random pick)</li>
+<li>Complete Status + Cancel Status (OPST)</li>
+</ul></div>
+<div class="box c3"><h2>3. OPST statuses</h2>
+<table class="tbl"><tr><th>Status</th><th>Effect</th></tr>
+<tr><td>Unfinished</td><td>Operator can still edit</td></tr>
+<tr><td>Review</td><td>Goes to Review Operator Checklist</td></tr>
+<tr><td>Complete</td><td>Frozen, review bypassed (default)</td></tr>
+<tr><td>Cancelled</td><td>Frozen via Move to Cancel</td></tr>
+</table></div>
+<div class="box c4"><h2>4. Task plans excluded</h2><ul>
+<li>Joint plans (<b>Perform By 2 Responsibility</b> entered)</li>
+<li>Isolation methods</li>
+<li>Nonconformity checklists</li>
+<li>Case management checklists</li>
+<li>No setup → every task plan with an active checklist is listed</li>
+</ul></div>
+<div class="box c5"><h2>5. Buttons</h2><ul>
+<li><b>Create Checklist</b> = Save; reopens YOUR unfinished one from <b>today</b> (same equipment + task plan)</li>
+<li><b>Move to Complete</b> → setup Complete Status (Unfinished / Review / Complete)</li>
+<li><b>Move to Cancel</b> → Cancelled</li>
+<li>Items behave like the WO Checklist tab</li>
+</ul></div>
+<div class="box c6"><h2>6. e-Signatures</h2><ul>
+<li><b>Performed By</b> / <b>Reviewed By</b>: username + password + Signature Type</li>
+<li>Must match Perform By / Review Responsibility on the task plan header</li>
+<li>Performed By signing clears reviewed-by details</li>
+<li>Screen lists only checklists you created → reviewer uses Review screen</li>
+</ul></div>
+<div class="box c7"><h2>7. On Reviewed By sign</h2><ul>
+<li>Regulated items with Repairs Needed checked per <b>OPCKLREG</b></li>
+<li>Equipment set back to <b>operational</b> when all are repaired / temp-repaired with follow-up</li>
+<li><b>OPCKLFUP</b> = ON → auto follow-up WOs or DM</li>
+<li>Create from Checklist on → nonconformities / observations</li>
+</ul></div>
+<div class="box c8"><h2>8. Organization options</h2>
+<div class="code">OPCKLREG N   → resolution (+follow-up) needed
+         P   → blank resolution OK + follow-up
+         OFF → no checks
+OCCLFLUP YES / WARNING / NO (follow-up w/o WO)
+OCFUTYPE DM | WO     OCFUFPTP YES | NO
+CHCKLSEQ YES → renumber by WO Route</div>
+</div>
+<div class="box c9"><h2>9. Review Operator Checklist</h2><ul>
+<li>Shows all checklists NOT at system status Unfinished</li>
+<li>Most fields protected; Status, Performed By, Reviewed By, Follow-up editable</li>
+<li>Once Complete, no other system status allowed</li>
+<li>Multi-select status change in list view; Status Authorization Matrix applies</li>
+</ul></div>
+<div class="box c10"><h2>10. Equipment tab</h2><ul>
+<li><b>Operator Checklists</b> tab on Assets, Positions, Systems, Locations</li>
+<li>Read-only list for the header equipment</li>
+<li>Double-click → read-only Checklist Items popup</li>
+<li>Install param <b>SHOWJOB</b> enables the Job Selector</li>
+</ul></div>
+<div class="bottom">
+<div class="box flowbox"><h2>Flow</h2>
+<div class="flow">
+<span class="pill">Equipment</span><span class="arr">→</span>
+<span class="pill">Task Plan</span><span class="arr">→</span>
+<span class="pill">Fill items</span><span class="arr">→</span>
+<span class="pill">Performed By</span><span class="arr">→</span>
+<span class="pill">Review</span><span class="arr">→</span>
+<span class="pill">Complete</span>
+</div></div>
+<div class="box iq"><h2>Consultant tips</h2>
+<ol>
+<li>One Default task plan per class</li>
+<li>Hide Reviewed By if review is separate</li>
+<li>Set OCFUTYPE before go-live</li>
+</ol></div>
+<div class="box kp"><h2>Key points</h2>
+<ul>
+<li>No WO needed to start</li>
+<li>Reopen = today + yours only</li>
+<li>OCCLFLUP check moves to Review</li>
+</ul></div>
+</div>
+
+</div>
+  <div class="footer">
+    <span class="note">Not affiliated with Octave · educational summary</span>
+    <span class="handle">Rahul Kumar</span>
+  </div>
+</div>
+</body></html>
