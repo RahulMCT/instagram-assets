@@ -1,0 +1,245 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>/* Octave Attune EAM LinkedIn cheat-sheet theme
+   Colours from octave.com CSS tokens (--oct-*), Nov 2026.
+   Fonts: Inter / Geist Mono stand in for proprietary Octave Sans / Display.
+   Do NOT embed the Octave logo (trademark). */
+
+@font-face{font-family:'Inter';src:url('file:///usr/share/fonts/truetype/sand-box/google/Inter/Inter-VariableFont_opsz,wght.ttf');font-weight:100 900;font-style:normal}
+@font-face{font-family:'Geist Mono';src:url('file:///usr/share/fonts/truetype/sand-box/google/Geist Mono/GeistMono-VariableFont_wght.ttf');font-weight:100 900;font-style:normal}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1350px;overflow:hidden}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:#1a1a1f;
+  color:#e7ebf2;
+  position:relative;
+}
+/* subtle orbit / wireframe feel — no logo */
+body::before{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse 80% 50% at 110% -10%, rgba(0,0,255,.18), transparent 55%),
+    radial-gradient(ellipse 60% 40% at -15% 110%, rgba(244,102,0,.14), transparent 50%),
+    radial-gradient(ellipse 50% 35% at 90% 90%, rgba(255,0,199,.10), transparent 55%);
+}
+body::after{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.35;
+  background:
+    repeating-linear-gradient(115deg, transparent 0 46px, rgba(178,183,196,.04) 46px 47px);
+}
+
+.frame{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;padding:18px 24px 14px}
+.accent-bar{
+  height:4px;border-radius:2px;margin-bottom:10px;flex:0 0 auto;
+  background:linear-gradient(90deg,#0000ff 0%,#03ffff 22%,#f46600 48%,#ff00c7 74%,#9933ff 100%);
+}
+
+.header{flex:0 0 auto;margin-bottom:8px}
+.eyebrow{
+  display:flex;align-items:center;gap:10px;margin-bottom:6px;
+  font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#b2b7c4;font-weight:600;
+}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:#03ffff;box-shadow:0 0 8px #03ffff}
+.product{
+  font-size:14px;color:#6f7480;font-weight:500;letter-spacing:.02em;margin-bottom:8px;
+}
+.title{
+  font-size:32px;font-weight:700;color:#fff;letter-spacing:-.02em;line-height:1.15;
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+}
+.title .badge{
+  font-size:12px;font-weight:700;letter-spacing:.14em;
+  background:linear-gradient(90deg,#0000ff,#03ffff);
+  color:#fff;padding:5px 10px;border-radius:999px;text-transform:uppercase;
+}
+.tagline{font-size:15px;color:#b2b7c4;margin-top:6px;line-height:1.35;font-weight:450}
+
+.grid{
+  flex:1 1 auto;min-height:0;
+  display:grid;grid-template-columns:1fr 1fr;gap:9px;align-content:stretch;
+}
+.box{
+  background:rgba(62,64,71,.55);
+  border:1px solid rgba(178,183,196,.18);
+  border-radius:10px;
+  padding:9px 11px;
+  position:relative;
+  overflow:hidden;
+  backdrop-filter:blur(2px);
+}
+.box::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:var(--accent,#03ffff);
+}
+.box h2{
+  font-size:17px;font-weight:700;color:var(--accent,#03ffff);
+  margin-bottom:5px;line-height:1.2;letter-spacing:-.01em;
+}
+.box p,.box li{font-size:14.2px;line-height:1.30;color:#e7ebf2;font-weight:450}
+.box ul{list-style:none;padding:0}
+.box li{padding-left:14px;position:relative;margin-bottom:3px}
+.box li:before{
+  content:'';position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:1px;
+  background:var(--accent,#03ffff);opacity:.85;
+}
+.box b,.box strong{color:#fff;font-weight:650}
+
+/* accent cycle for numbered sections */
+.c1{--accent:#03ffff}.c2{--accent:#f46600}.c3{--accent:#7890ee}
+.c4{--accent:#4fff00}.c5{--accent:#ff00c7}.c6{--accent:#fff500}
+.c7{--accent:#03ffff}.c8{--accent:#9933ff}.c9{--accent:#f46600}.c10{--accent:#1e88e5}
+
+.code{
+  font-family:'Geist Mono',ui-monospace,monospace;
+  font-size:12.5px;line-height:1.4;color:#e7ebf2;
+  background:rgba(26,26,31,.75);
+  border:1px dashed rgba(178,183,196,.28);
+  border-radius:6px;padding:6px 8px;margin:4px 0 6px;
+  white-space:pre-wrap;word-break:break-word;
+}
+.tbl{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:4px}
+.tbl th,.tbl td{
+  border:1px solid rgba(178,183,196,.22);
+  padding:3px 6px;text-align:left;color:#e7ebf2;
+}
+.tbl th{
+  background:rgba(0,0,255,.22);color:#fff;font-weight:650;
+}
+.flow{display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin-top:4px;row-gap:6px}
+.pill{
+  background:rgba(0,0,255,.18);
+  border:1px solid rgba(3,255,255,.35);
+  border-radius:6px;padding:4px 8px;
+  font-size:12.5px;color:#03ffff;font-weight:650;
+}
+.arr{color:#f46600;font-size:14px;font-weight:700}
+
+.bottom{
+  grid-column:1/-1;
+  display:grid;grid-template-columns:1.15fr 1.05fr .9fr;gap:10px;
+}
+.bottom .box{min-height:0}
+.iq h2{color:#f46600}
+.iq{--accent:#f46600}
+.iq ol{padding-left:18px;font-size:13.5px;line-height:1.35;color:#e7ebf2}
+.iq li{margin-bottom:3px;padding-left:0}
+.iq li:before{content:none;display:none}
+.kp{--accent:#4fff00}
+.kp h2{color:#4fff00}
+.flowbox{--accent:#03ffff}
+.flowbox h2{color:#03ffff}
+
+.footer{
+  flex:0 0 auto;display:flex;justify-content:space-between;align-items:center;
+  margin-top:8px;padding-top:7px;
+  border-top:1px solid rgba(178,183,196,.16);
+  font-size:12px;color:#6f7480;
+}
+.footer .handle{font-family:'Geist Mono',monospace;color:#b2b7c4;font-size:13px}
+.footer .note{letter-spacing:.04em}
+</style></head>
+<body>
+<div class="frame">
+  <div class="accent-bar"></div>
+  <div class="header">
+  <div class="eyebrow"><span class="dot"></span>Asset Performance · Attune EAM</div>
+  <div class="product">Octave Attune EAM (formerly HxGN EAM)</div>
+  <div class="title">Investment Planning <span class="badge">Cheat sheet</span></div>
+  <div class="tagline">Budget + refurbish/replace options + capital requests in, an optimized multi-year plan out.</div>
+</div>
+<div class="grid">
+<div class="box c1"><h2>1. What it is</h2><ul>
+<li>Takes <b>budget</b> for future periods + <b>investment options</b> (equipment) + <b>capital planning requests</b></li>
+<li>Returns an <b>optimized investment plan</b> per period</li>
+<li>Engine: <b>Asset Investment Planning (AIP)</b> in Optimized Scheduler</li>
+<li><b>Cloud only</b>, not on premise</li>
+</ul></div>
+<div class="box c2"><h2>2. One-time setup</h2><ul>
+<li>Register Optimized Scheduler <b>Server URL</b> + <b>API key</b> (MPConfiguration.xml OPSConfig)</li>
+<li>Install param <b>OPTMSCHL = YES</b> (fixed once set)</li>
+<li>Tenant pre-registered with Optimized Scheduler</li>
+<li>Job Setup: activate <b>INVPLREQ</b> job</li>
+<li>OTIMEOUT plays no role</li>
+</ul></div>
+<div class="box c3"><h2>3. Investment Options</h2><ul>
+<li>Equipment Class Definitions &gt; <b>Investment Options</b> tab (was Cost Types)</li>
+<li>Type from System Codes <b>RCTP</b>: refurbishment / replacement</li>
+<li>Estimated Costs (blank = free), <b>At Age (years)</b></li>
+<li><b>Maximum Recurrence</b> 2 → overhaul at 10 and 20 yrs</li>
+<li>Invest Early (years), Adjust Interval, Weight</li>
+</ul></div>
+<div class="box c4"><h2>4. Plan priorities</h2><ul>
+<li>Equipment: <b>OBCR</b> criticality Weight and/or Risk Priority Number</li>
+<li>Both selected → Weight × RPN</li>
+<li>CPR Priority Basis: <b>IRR / NPV / ROI / Priority</b> (CPPR Weight)</li>
+<li>Priority Override always wins</li>
+</ul>
+<div class="code">Plan Priority = Weight × -1 + Max Weight + 1</div></div>
+<div class="box c5"><h2>5. Investment Planning header</h2><ul>
+<li>Status INST: <b>Open</b> / <b>Closed</b> (frozen)</li>
+<li>Start Date in future; <b>1–99</b> Planning Periods (1 period = 1 year)</li>
+<li>Yearly Inflation % compounds: $100 → $102 → $104.04</li>
+<li>Allow Early Investments, Allow Budget Rollover (early first)</li>
+</ul></div>
+<div class="box c6"><h2>6. Budget Details</h2>
+<table class="tbl"><tr><th>Funding Type</th><th>Meaning</th></tr>
+<tr><td>Unlimited Budget</td><td>Cost of doing everything</td></tr>
+<tr><td>Yearly Increase</td><td>+ fixed amount / yr</td></tr>
+<tr><td>Yearly % Increase</td><td>+ fixed % / yr (compound)</td></tr>
+</table>
+<ul><li>Negative increase allowed; budget never &lt; 0</li></ul></div>
+<div class="box c7"><h2>7. Equipment tab</h2><ul>
+<li><b>Age</b> = (Date Created − Commission Date) / 365, or usage-based</li>
+<li><b>Age Correction</b> from Correction Condition Score (10-yr car in 6-yr condition → −4)</li>
+<li><b>Age Increment per Period</b>: 50000 ÷ 25000 mi = 2</li>
+<li>Valid Investment Option: same Class + Category + Org, At Age filled</li>
+</ul></div>
+<div class="box c8"><h2>8. Capital Planning Request tab</h2><ul>
+<li><b>Refresh Investment Period</b>: (Requested) Appropriation Date − Start Date ÷ 365, min 1</li>
+<li>Investment Period Override, Invest Early (years)</li>
+<li>Option cost = est. labor + material; weight 1; age 1</li>
+</ul></div>
+<div class="box c9"><h2>9. Request process</h2>
+<div class="code">Start Planning  → Planning Status Requested
+INVPLREQ job    → Executing (Planning Run Id)
+Optimized Sched.→ Completed (Planning Run Date)</div>
+<ul><li>Out of Service plans silently ignored</li>
+<li>Create New Revision to test another budget</li></ul></div>
+<div class="box c10"><h2>10. Planning Results tab</h2><ul>
+<li><b>Budget</b>: Total Period Cost vs Period Budget</li>
+<li><b>Planned</b> Investment Option: period, Option Cost, early / on time / late</li>
+<li><b>Unplanned</b>: no budget, Option Age shown</li>
+<li><b>Excluded Equipment</b>: no valid option (e.g. no Class)</li>
+</ul></div>
+<div class="bottom">
+<div class="box flowbox"><h2>Flow</h2>
+<div class="flow">
+<span class="pill">Options + weights</span><span class="arr">→</span>
+<span class="pill">Plan + budget</span><span class="arr">→</span>
+<span class="pill">Add equip. / CPRs</span><span class="arr">→</span>
+<span class="pill">Start Planning</span><span class="arr">→</span>
+<span class="pill">INVPLREQ</span><span class="arr">→</span>
+<span class="pill">Results</span>
+</div></div>
+<div class="box iq"><h2>Consultant tips</h2>
+<ol>
+<li>Class every asset first</li>
+<li>Don't mix equip. + CPRs</li>
+<li>Revision per budget</li>
+</ol></div>
+<div class="box kp"><h2>Key points</h2>
+<ul>
+<li>Cloud only</li>
+<li>1 period = 1 year</li>
+<li>Override beats calc</li>
+</ul></div>
+</div>
+
+</div>
+  <div class="footer">
+    <span class="note">Not affiliated with Octave · educational summary</span>
+    <span class="handle">Rahul Kumar</span>
+  </div>
+</div>
+</body></html>
