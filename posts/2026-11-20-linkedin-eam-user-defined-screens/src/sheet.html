@@ -1,0 +1,249 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>/* Octave Attune EAM LinkedIn cheat-sheet theme
+   Colours from octave.com CSS tokens (--oct-*), Nov 2026.
+   Fonts: Inter / Geist Mono stand in for proprietary Octave Sans / Display.
+   Do NOT embed the Octave logo (trademark). */
+
+@font-face{font-family:'Inter';src:url('file:///usr/share/fonts/truetype/sand-box/google/Inter/Inter-VariableFont_opsz,wght.ttf');font-weight:100 900;font-style:normal}
+@font-face{font-family:'Geist Mono';src:url('file:///usr/share/fonts/truetype/sand-box/google/Geist Mono/GeistMono-VariableFont_wght.ttf');font-weight:100 900;font-style:normal}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1350px;overflow:hidden}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:#1a1a1f;
+  color:#e7ebf2;
+  position:relative;
+}
+/* subtle orbit / wireframe feel — no logo */
+body::before{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse 80% 50% at 110% -10%, rgba(0,0,255,.18), transparent 55%),
+    radial-gradient(ellipse 60% 40% at -15% 110%, rgba(244,102,0,.14), transparent 50%),
+    radial-gradient(ellipse 50% 35% at 90% 90%, rgba(255,0,199,.10), transparent 55%);
+}
+body::after{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.35;
+  background:
+    repeating-linear-gradient(115deg, transparent 0 46px, rgba(178,183,196,.04) 46px 47px);
+}
+
+.frame{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;padding:18px 24px 14px}
+.accent-bar{
+  height:4px;border-radius:2px;margin-bottom:10px;flex:0 0 auto;
+  background:linear-gradient(90deg,#0000ff 0%,#03ffff 22%,#f46600 48%,#ff00c7 74%,#9933ff 100%);
+}
+
+.header{flex:0 0 auto;margin-bottom:8px}
+.eyebrow{
+  display:flex;align-items:center;gap:10px;margin-bottom:6px;
+  font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#b2b7c4;font-weight:600;
+}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:#03ffff;box-shadow:0 0 8px #03ffff}
+.product{
+  font-size:14px;color:#6f7480;font-weight:500;letter-spacing:.02em;margin-bottom:8px;
+}
+.title{
+  font-size:32px;font-weight:700;color:#fff;letter-spacing:-.02em;line-height:1.15;
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+}
+.title .badge{
+  font-size:12px;font-weight:700;letter-spacing:.14em;
+  background:linear-gradient(90deg,#0000ff,#03ffff);
+  color:#fff;padding:5px 10px;border-radius:999px;text-transform:uppercase;
+}
+.tagline{font-size:15px;color:#b2b7c4;margin-top:6px;line-height:1.35;font-weight:450}
+
+.grid{
+  flex:1 1 auto;min-height:0;
+  display:grid;grid-template-columns:1fr 1fr;gap:9px;align-content:stretch;
+}
+.box{
+  background:rgba(62,64,71,.55);
+  border:1px solid rgba(178,183,196,.18);
+  border-radius:10px;
+  padding:9px 11px;
+  position:relative;
+  overflow:hidden;
+  backdrop-filter:blur(2px);
+}
+.box::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:var(--accent,#03ffff);
+}
+.box h2{
+  font-size:17px;font-weight:700;color:var(--accent,#03ffff);
+  margin-bottom:5px;line-height:1.2;letter-spacing:-.01em;
+}
+.box p,.box li{font-size:14.2px;line-height:1.30;color:#e7ebf2;font-weight:450}
+.box ul{list-style:none;padding:0}
+.box li{padding-left:14px;position:relative;margin-bottom:3px}
+.box li:before{
+  content:'';position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:1px;
+  background:var(--accent,#03ffff);opacity:.85;
+}
+.box b,.box strong{color:#fff;font-weight:650}
+
+/* accent cycle for numbered sections */
+.c1{--accent:#03ffff}.c2{--accent:#f46600}.c3{--accent:#7890ee}
+.c4{--accent:#4fff00}.c5{--accent:#ff00c7}.c6{--accent:#fff500}
+.c7{--accent:#03ffff}.c8{--accent:#9933ff}.c9{--accent:#f46600}.c10{--accent:#1e88e5}
+
+.code{
+  font-family:'Geist Mono',ui-monospace,monospace;
+  font-size:12.5px;line-height:1.4;color:#e7ebf2;
+  background:rgba(26,26,31,.75);
+  border:1px dashed rgba(178,183,196,.28);
+  border-radius:6px;padding:6px 8px;margin:4px 0 6px;
+  white-space:pre-wrap;word-break:break-word;
+}
+.tbl{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:4px}
+.tbl th,.tbl td{
+  border:1px solid rgba(178,183,196,.22);
+  padding:3px 6px;text-align:left;color:#e7ebf2;
+}
+.tbl th{
+  background:rgba(0,0,255,.22);color:#fff;font-weight:650;
+}
+.flow{display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin-top:4px;row-gap:6px}
+.pill{
+  background:rgba(0,0,255,.18);
+  border:1px solid rgba(3,255,255,.35);
+  border-radius:6px;padding:4px 8px;
+  font-size:12.5px;color:#03ffff;font-weight:650;
+}
+.arr{color:#f46600;font-size:14px;font-weight:700}
+
+.bottom{
+  grid-column:1/-1;
+  display:grid;grid-template-columns:1.15fr 1.05fr .9fr;gap:10px;
+}
+.bottom .box{min-height:0}
+.iq h2{color:#f46600}
+.iq{--accent:#f46600}
+.iq ol{padding-left:18px;font-size:13.5px;line-height:1.35;color:#e7ebf2}
+.iq li{margin-bottom:3px;padding-left:0}
+.iq li:before{content:none;display:none}
+.kp{--accent:#4fff00}
+.kp h2{color:#4fff00}
+.flowbox{--accent:#03ffff}
+.flowbox h2{color:#03ffff}
+
+.footer{
+  flex:0 0 auto;display:flex;justify-content:space-between;align-items:center;
+  margin-top:8px;padding-top:7px;
+  border-top:1px solid rgba(178,183,196,.16);
+  font-size:12px;color:#6f7480;
+}
+.footer .handle{font-family:'Geist Mono',monospace;color:#b2b7c4;font-size:13px}
+.footer .note{letter-spacing:.04em}
+</style></head>
+<body>
+<div class="frame">
+  <div class="accent-bar"></div>
+  <div class="header">
+  <div class="eyebrow"><span class="dot"></span>Asset Performance · Attune EAM</div>
+  <div class="product">Octave Attune EAM (formerly HxGN EAM)</div>
+  <div class="title">User Defined Screens <span class="badge">Cheat sheet</span></div>
+  <div class="tagline">Build your own List View / Record View screens and tabs: fields, keys, SQL values, then Generate.</div>
+</div>
+<div class="grid">
+<style>.grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}</style>
+<div class="box c1"><h2>1. What it is</h2><ul>
+<li>Build <b>custom screens</b> inside EAM from fields you define</li>
+<li>Each screen is <b>stored as a table</b> in the database</li>
+<li><b>User Defined Screens</b> = standard List View / Record View screen</li>
+<li>For system admins + power users with database design know-how</li>
+</ul></div>
+<div class="box c2"><h2>2. Naming rules</h2>
+<div class="code">Screen Name : 6-char code, 2nd char = 'U'
+              unique, no special chars
+Table Name  : unique in EAM schema,
+              no special chars → prefixed U5
+Entity      : optional → prefixed $</div></div>
+<div class="box c3"><h2>3. Entity, tab or menu</h2><ul>
+<li><b>Entity</b> entered → auto <b>Description</b> field + <b>Comments</b> and <b>Documents</b> tabs</li>
+<li><b>Tab</b> → choose the <b>Parent Screen</b></li>
+<li>Otherwise → List View / Record View screen for the <b>menu</b></li>
+<li><b>Out of Service</b>: hidden from lookups + Menus / Scanner Menu tabs on User Groups; existing menu entries stay (remove manually)</li>
+</ul></div>
+<div class="box c4"><h2>4. Fields tab basics</h2>
+<table class="tbl"><tr><th>Field</th><th>Meaning</th></tr>
+<tr><td>Field Name</td><td>Actual column name; unique, no reserved words, no special chars</td></tr>
+<tr><td>Description</td><td>Detailed name / definition</td></tr>
+<tr><td>Field Label</td><td>Label on screen (screen designer later)</td></tr>
+<tr><td>Sequence</td><td>Order of the field on the screen</td></tr>
+</table></div>
+<div class="box c5"><h2>5. Field types</h2>
+<table class="tbl"><tr><th>Type</th><th>Enables / stored as</th></tr>
+<tr><td>Alphabetic</td><td>Field Length + optional Uppercase</td></tr>
+<tr><td>Numeric</td><td>Total Digits (both sides) + Decimal Places</td></tr>
+<tr><td>Free Format Text</td><td>General text / comments, CLOB</td></tr>
+<tr><td>Checkbox · Date · Date Time · Time</td><td>Standard types</td></tr>
+</table></div>
+<div class="box c6"><h2>6. Keys &amp; flags</h2><ul>
+<li><b>Is Primary Key</b>: unique record id, one field or a combination</li>
+<li><b>Is Nullable</b>: can be blank; protected + unselected on a PK field</li>
+<li><b>Uppercase</b>: Alphabetic only, value must be uppercase</li>
+<li>Field-level <b>Out of Service</b>: currently not used</li>
+</ul></div>
+<div class="box c7"><h2>7. Computed Value</h2><ul>
+<li>Enables <b>Computed Data</b>: SELECT runs <b>when the record is saved</b></li>
+<li>Generated as a <b>protected</b> field; Oracle + SQL functions allowed</li>
+</ul>
+<div class="code">SELECT sysdate FROM dual
+-- field with Sequence 3 = :3
+SELECT per_desc FROM r5personnel
+ WHERE per_code = :3</div></div>
+<div class="box c8"><h2>8. Retrieved Value &amp; lookups</h2><ul>
+<li><b>Source Field</b> fires the query when the user <b>leaves</b> it</li>
+<li><b>Retrieved Value Query</b> = SELECT from the <b>Queries</b> screen</li>
+<li><b>Query Code</b> makes a lookup (Data Collection, Normal or Lookup queries)</li>
+</ul>
+<div class="code">-- installed assets only
+SELECT obj_code, obj_desc FROM r5objects
+ WHERE obj_obrtype = 'A' AND obj_status = 'I'</div></div>
+<div class="box c9"><h2>9. Parent Screen Key Field</h2><ul>
+<li>Tabs must <b>bind</b> rows to the header, else they show on <b>all</b> headers</li>
+<li>Parts tab example: <b>Part Code + Part Organization</b> + 1 unique field</li>
+<li>= <b>3 primary key fields</b> on the Fields tab</li>
+<li>Key fields can be hidden with screen designer</li>
+</ul></div>
+<div class="box c10"><h2>10. Generate</h2><ul>
+<li>Record View → <b>Generate</b> → confirmation → generation starts</li>
+<li>Creates a new <b>function</b> + new <b>database table</b></li>
+<li>One <b>generic web service</b> for Insert / Update / Delete, not on Web Service Prompt (<b>BSWSPM</b>)</li>
+<li>After generation, <b>edits are limited</b></li>
+</ul></div>
+<div class="bottom">
+<div class="box flowbox"><h2>Flow</h2>
+<div class="flow">
+<span class="pill">Screen Name</span><span class="arr">→</span>
+<span class="pill">Table (U5)</span><span class="arr">→</span>
+<span class="pill">Entity? Tab / Menu</span><span class="arr">→</span>
+<span class="pill">Fields tab</span><span class="arr">→</span>
+<span class="pill">Generate</span><span class="arr">→</span>
+<span class="pill">Menu / Tab</span>
+</div></div>
+<div class="box iq"><h2>Consultant tips</h2>
+<ol>
+<li>Finalise fields + keys before Generate</li>
+<li>Reference other fields by Sequence (:3)</li>
+<li>Fine-tune labels in screen designer</li>
+</ol></div>
+<div class="box kp"><h2>Key points</h2>
+<ul>
+<li>2nd char of code = 'U'</li>
+<li>Table → U5 · Entity → $</li>
+<li>Free Format Text = CLOB</li>
+</ul></div>
+</div>
+
+</div>
+  <div class="footer">
+    <span class="note">Not affiliated with Octave · educational summary</span>
+    <span class="handle">Rahul Kumar</span>
+  </div>
+</div>
+</body></html>
