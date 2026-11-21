@@ -1,0 +1,247 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>/* Octave Attune EAM LinkedIn cheat-sheet theme
+   Colours from octave.com CSS tokens (--oct-*), Nov 2026.
+   Fonts: Inter / Geist Mono stand in for proprietary Octave Sans / Display.
+   Do NOT embed the Octave logo (trademark). */
+
+@font-face{font-family:'Inter';src:url('file:///usr/share/fonts/truetype/sand-box/google/Inter/Inter-VariableFont_opsz,wght.ttf');font-weight:100 900;font-style:normal}
+@font-face{font-family:'Geist Mono';src:url('file:///usr/share/fonts/truetype/sand-box/google/Geist Mono/GeistMono-VariableFont_wght.ttf');font-weight:100 900;font-style:normal}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1350px;overflow:hidden}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:#1a1a1f;
+  color:#e7ebf2;
+  position:relative;
+}
+/* subtle orbit / wireframe feel — no logo */
+body::before{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse 80% 50% at 110% -10%, rgba(0,0,255,.18), transparent 55%),
+    radial-gradient(ellipse 60% 40% at -15% 110%, rgba(244,102,0,.14), transparent 50%),
+    radial-gradient(ellipse 50% 35% at 90% 90%, rgba(255,0,199,.10), transparent 55%);
+}
+body::after{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.35;
+  background:
+    repeating-linear-gradient(115deg, transparent 0 46px, rgba(178,183,196,.04) 46px 47px);
+}
+
+.frame{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;padding:18px 24px 14px}
+.accent-bar{
+  height:4px;border-radius:2px;margin-bottom:10px;flex:0 0 auto;
+  background:linear-gradient(90deg,#0000ff 0%,#03ffff 22%,#f46600 48%,#ff00c7 74%,#9933ff 100%);
+}
+
+.header{flex:0 0 auto;margin-bottom:8px}
+.eyebrow{
+  display:flex;align-items:center;gap:10px;margin-bottom:6px;
+  font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#b2b7c4;font-weight:600;
+}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:#03ffff;box-shadow:0 0 8px #03ffff}
+.product{
+  font-size:14px;color:#6f7480;font-weight:500;letter-spacing:.02em;margin-bottom:8px;
+}
+.title{
+  font-size:32px;font-weight:700;color:#fff;letter-spacing:-.02em;line-height:1.15;
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+}
+.title .badge{
+  font-size:12px;font-weight:700;letter-spacing:.14em;
+  background:linear-gradient(90deg,#0000ff,#03ffff);
+  color:#fff;padding:5px 10px;border-radius:999px;text-transform:uppercase;
+}
+.tagline{font-size:15px;color:#b2b7c4;margin-top:6px;line-height:1.35;font-weight:450}
+
+.grid{
+  flex:1 1 auto;min-height:0;
+  display:grid;grid-template-columns:1fr 1fr;gap:9px;align-content:stretch;
+}
+.box{
+  background:rgba(62,64,71,.55);
+  border:1px solid rgba(178,183,196,.18);
+  border-radius:10px;
+  padding:9px 11px;
+  position:relative;
+  overflow:hidden;
+  backdrop-filter:blur(2px);
+}
+.box::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:var(--accent,#03ffff);
+}
+.box h2{
+  font-size:17px;font-weight:700;color:var(--accent,#03ffff);
+  margin-bottom:5px;line-height:1.2;letter-spacing:-.01em;
+}
+.box p,.box li{font-size:14.2px;line-height:1.30;color:#e7ebf2;font-weight:450}
+.box ul{list-style:none;padding:0}
+.box li{padding-left:14px;position:relative;margin-bottom:3px}
+.box li:before{
+  content:'';position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:1px;
+  background:var(--accent,#03ffff);opacity:.85;
+}
+.box b,.box strong{color:#fff;font-weight:650}
+
+/* accent cycle for numbered sections */
+.c1{--accent:#03ffff}.c2{--accent:#f46600}.c3{--accent:#7890ee}
+.c4{--accent:#4fff00}.c5{--accent:#ff00c7}.c6{--accent:#fff500}
+.c7{--accent:#03ffff}.c8{--accent:#9933ff}.c9{--accent:#f46600}.c10{--accent:#1e88e5}
+
+.code{
+  font-family:'Geist Mono',ui-monospace,monospace;
+  font-size:12.5px;line-height:1.4;color:#e7ebf2;
+  background:rgba(26,26,31,.75);
+  border:1px dashed rgba(178,183,196,.28);
+  border-radius:6px;padding:6px 8px;margin:4px 0 6px;
+  white-space:pre-wrap;word-break:break-word;
+}
+.tbl{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:4px}
+.tbl th,.tbl td{
+  border:1px solid rgba(178,183,196,.22);
+  padding:3px 6px;text-align:left;color:#e7ebf2;
+}
+.tbl th{
+  background:rgba(0,0,255,.22);color:#fff;font-weight:650;
+}
+.flow{display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin-top:4px;row-gap:6px}
+.pill{
+  background:rgba(0,0,255,.18);
+  border:1px solid rgba(3,255,255,.35);
+  border-radius:6px;padding:4px 8px;
+  font-size:12.5px;color:#03ffff;font-weight:650;
+}
+.arr{color:#f46600;font-size:14px;font-weight:700}
+
+.bottom{
+  grid-column:1/-1;
+  display:grid;grid-template-columns:1.15fr 1.05fr .9fr;gap:10px;
+}
+.bottom .box{min-height:0}
+.iq h2{color:#f46600}
+.iq{--accent:#f46600}
+.iq ol{padding-left:18px;font-size:13.5px;line-height:1.35;color:#e7ebf2}
+.iq li{margin-bottom:3px;padding-left:0}
+.iq li:before{content:none;display:none}
+.kp{--accent:#4fff00}
+.kp h2{color:#4fff00}
+.flowbox{--accent:#03ffff}
+.flowbox h2{color:#03ffff}
+
+.footer{
+  flex:0 0 auto;display:flex;justify-content:space-between;align-items:center;
+  margin-top:8px;padding-top:7px;
+  border-top:1px solid rgba(178,183,196,.16);
+  font-size:12px;color:#6f7480;
+}
+.footer .handle{font-family:'Geist Mono',monospace;color:#b2b7c4;font-size:13px}
+.footer .note{letter-spacing:.04em}
+</style></head>
+<body>
+<div class="frame">
+  <div class="accent-bar"></div>
+  <div class="header">
+  <div class="eyebrow"><span class="dot"></span>Asset Performance · Attune EAM</div>
+  <div class="product">Octave Attune EAM (formerly HxGN EAM)</div>
+  <div class="title">Enterprise Search <span class="badge">Cheat sheet</span></div>
+  <div class="tagline">Search data across all screens: Interest Centers, Repositories and columns, generated and crawled through Infor IES.</div>
+</div>
+<div class="grid">
+<style>.grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}</style>
+<div class="box c1"><h2>1. What it is</h2><ul>
+<li>Query data in the system <b>across all screens</b> from one search field</li>
+<li>Screens-tabs + fields to include are set up on <b>Enterprise Search Setup</b></li>
+<li>Then generated via the <b>Generate</b> screen; results show as a <b>tree</b></li>
+<li>For system admins, developers + analysts</li>
+</ul></div>
+<div class="box c2"><h2>2. Interest Centers</h2><ul>
+<li>Administration menu → <b>Enterprise Search Setup</b></li>
+<li>Record view: <b>Interest Center</b> Code / Description + <b>Category</b></li>
+<li>Top of the tree; groups repositories + fields</li>
+<li><b>WORK</b>: Work Orders, PM Schedules, trades · <b>PURCHASE</b>: POs, Requisitions, Blanket Orders</li>
+<li>Category = <b>not a validated</b> lookup</li>
+</ul></div>
+<div class="box c3"><h2>3. Repositories tab</h2>
+<table class="tbl"><tr><th>Field</th><th>Example / rule</th></tr>
+<tr><td>Table Name</td><td>DB table, e.g. <b>R5EVENTS</b></td></tr>
+<tr><td>Repository</td><td>Name of the repository</td></tr>
+<tr><td>User Function</td><td>Screen, e.g. <b>WSJOBS</b>; must match table</td></tr>
+<tr><td>Tab Name</td><td>Tabs of that screen, e.g. Activities</td></tr>
+<tr><td>Thumbnail</td><td>Hyperlinked image; http:// // \\ https://</td></tr>
+</table></div>
+<div class="box c4"><h2>4. Auto-filled (protected)</h2><ul>
+<li>From Table Name: <b>Date Created Column</b>, <b>Date Updated Column</b>, <b>Org. Column</b>, <b>Table Prefix</b></li>
+<li><b>Popup</b> checkbox ticked by the system if the user function is a popup</li>
+<li>WORK can hold WO Activities, WO Parts, Service Requests, Work Orders, Employees…</li>
+</ul></div>
+<div class="box c5"><h2>5. Repository Columns</h2><ul>
+<li>Pick repository → table + all its fields load</li>
+<li>Editable only: <b>Display Order</b>, <b>Alias</b>, <b>Facet</b></li>
+<li>Code + Description default to <b>1 and 2</b> (top of result)</li>
+<li><b>Alias</b> = friendly name · <b>Facet</b> = groups fields (not validated)</li>
+<li>Delete fields you don't want searched</li>
+</ul></div>
+<div class="box c6"><h2>6. Generate definitions</h2><ul>
+<li>List-only grid of all interest centers + repositories</li>
+<li>Select records → Actions → <b>Download</b></li>
+</ul>
+<div class="code">output : definitions.zip
+upload : Infor IES (Definitions tab)</div></div>
+<div class="box c7"><h2>7. Infor IES upload</h2>
+<div class="code">https://&lt;ies_install_server&gt;.infor.com:21000/ies/admin</div><ul>
+<li>Deployments → Upload <b>deployment.zip</b> (plugin source, don't modify)</li>
+<li>Definitions → Upload a Definition → <b>definitions.zip</b></li>
+<li>IES 11.0.3 is <b>not multi-tenant</b>: prefix/suffix Interest Center + Repository with tenant id</li>
+</ul></div>
+<div class="box c8"><h2>8. Install app + crawl</h2><ul>
+<li>Applications → <b>Install Application</b>; defaults + default memory heap</li>
+<li>Select <b>1.0.0 eam</b> deployment → Infor EAM details → Install</li>
+<li>Application Details → Admin → Other Tasks → <b>Load Resources</b></li>
+<li><b>Immediately Crawl Repositories</b> → check <b>View Crawls</b></li>
+<li>Test a Search; <b>/grid/ui/</b> → Topology: red Log numbers = errors</li>
+</ul></div>
+<div class="box c9"><h2>9. Using the search</h2><ul>
+<li>Type in field → search icon / <b>Enter</b> opens the popup</li>
+<li>Results grouped by <b>Interest Center</b> (collapsible headers)</li>
+<li>Hyperlinks open the record view; <b>tabs not hyperlinked</b></li>
+<li>Popup can move / minimise (bottom left); <b>closing clears</b> results</li>
+<li>Empty field → popup with no records</li>
+</ul></div>
+<div class="box c10"><h2>10. ESEARCH &amp; limits</h2><ul>
+<li><b>ESEARCH</b> install parameter null → icon won't open popup</li>
+<li>Pressing Enter then prompts for an ESEARCH value</li>
+<li>Field hidden on: caller login, generic web part, expired password, install parameter setup</li>
+</ul></div>
+<div class="bottom">
+<div class="box flowbox"><h2>Flow</h2>
+<div class="flow">
+<span class="pill">Interest Center</span><span class="arr">→</span>
+<span class="pill">Repositories</span><span class="arr">→</span>
+<span class="pill">Columns</span><span class="arr">→</span>
+<span class="pill">Generate zip</span><span class="arr">→</span>
+<span class="pill">IES + crawl</span><span class="arr">→</span>
+<span class="pill">Search</span>
+</div></div>
+<div class="box iq"><h2>Consultant tips</h2>
+<ol>
+<li>Match Table Name to User Function</li>
+<li>Use Alias for cryptic column names</li>
+<li>Check View Crawls + Topology logs</li>
+</ol></div>
+<div class="box kp"><h2>Key points</h2>
+<ul>
+<li>Output = definitions.zip</li>
+<li>Code/Description = 1, 2</li>
+<li>Needs ESEARCH set</li>
+</ul></div>
+</div>
+
+</div>
+  <div class="footer">
+    <span class="note">Not affiliated with Octave · educational summary</span>
+    <span class="handle">Rahul Kumar</span>
+  </div>
+</div>
+</body></html>
