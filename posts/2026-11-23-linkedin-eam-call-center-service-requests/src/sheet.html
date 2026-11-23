@@ -1,0 +1,249 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>/* Octave Attune EAM LinkedIn cheat-sheet theme
+   Colours from octave.com CSS tokens (--oct-*), Nov 2026.
+   Fonts: Inter / Geist Mono stand in for proprietary Octave Sans / Display.
+   Do NOT embed the Octave logo (trademark). */
+
+@font-face{font-family:'Inter';src:url('file:///usr/share/fonts/truetype/sand-box/google/Inter/Inter-VariableFont_opsz,wght.ttf');font-weight:100 900;font-style:normal}
+@font-face{font-family:'Geist Mono';src:url('file:///usr/share/fonts/truetype/sand-box/google/Geist Mono/GeistMono-VariableFont_wght.ttf');font-weight:100 900;font-style:normal}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1350px;overflow:hidden}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:#1a1a1f;
+  color:#e7ebf2;
+  position:relative;
+}
+/* subtle orbit / wireframe feel — no logo */
+body::before{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse 80% 50% at 110% -10%, rgba(0,0,255,.18), transparent 55%),
+    radial-gradient(ellipse 60% 40% at -15% 110%, rgba(244,102,0,.14), transparent 50%),
+    radial-gradient(ellipse 50% 35% at 90% 90%, rgba(255,0,199,.10), transparent 55%);
+}
+body::after{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.35;
+  background:
+    repeating-linear-gradient(115deg, transparent 0 46px, rgba(178,183,196,.04) 46px 47px);
+}
+
+.frame{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;padding:18px 24px 14px}
+.accent-bar{
+  height:4px;border-radius:2px;margin-bottom:10px;flex:0 0 auto;
+  background:linear-gradient(90deg,#0000ff 0%,#03ffff 22%,#f46600 48%,#ff00c7 74%,#9933ff 100%);
+}
+
+.header{flex:0 0 auto;margin-bottom:8px}
+.eyebrow{
+  display:flex;align-items:center;gap:10px;margin-bottom:6px;
+  font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#b2b7c4;font-weight:600;
+}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:#03ffff;box-shadow:0 0 8px #03ffff}
+.product{
+  font-size:14px;color:#6f7480;font-weight:500;letter-spacing:.02em;margin-bottom:8px;
+}
+.title{
+  font-size:32px;font-weight:700;color:#fff;letter-spacing:-.02em;line-height:1.15;
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+}
+.title .badge{
+  font-size:12px;font-weight:700;letter-spacing:.14em;
+  background:linear-gradient(90deg,#0000ff,#03ffff);
+  color:#fff;padding:5px 10px;border-radius:999px;text-transform:uppercase;
+}
+.tagline{font-size:15px;color:#b2b7c4;margin-top:6px;line-height:1.35;font-weight:450}
+
+.grid{
+  flex:1 1 auto;min-height:0;
+  display:grid;grid-template-columns:1fr 1fr;gap:9px;align-content:stretch;
+}
+.box{
+  background:rgba(62,64,71,.55);
+  border:1px solid rgba(178,183,196,.18);
+  border-radius:10px;
+  padding:9px 11px;
+  position:relative;
+  overflow:hidden;
+  backdrop-filter:blur(2px);
+}
+.box::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:var(--accent,#03ffff);
+}
+.box h2{
+  font-size:17px;font-weight:700;color:var(--accent,#03ffff);
+  margin-bottom:5px;line-height:1.2;letter-spacing:-.01em;
+}
+.box p,.box li{font-size:14.2px;line-height:1.30;color:#e7ebf2;font-weight:450}
+.box ul{list-style:none;padding:0}
+.box li{padding-left:14px;position:relative;margin-bottom:3px}
+.box li:before{
+  content:'';position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:1px;
+  background:var(--accent,#03ffff);opacity:.85;
+}
+.box b,.box strong{color:#fff;font-weight:650}
+
+/* accent cycle for numbered sections */
+.c1{--accent:#03ffff}.c2{--accent:#f46600}.c3{--accent:#7890ee}
+.c4{--accent:#4fff00}.c5{--accent:#ff00c7}.c6{--accent:#fff500}
+.c7{--accent:#03ffff}.c8{--accent:#9933ff}.c9{--accent:#f46600}.c10{--accent:#1e88e5}
+
+.code{
+  font-family:'Geist Mono',ui-monospace,monospace;
+  font-size:12.5px;line-height:1.4;color:#e7ebf2;
+  background:rgba(26,26,31,.75);
+  border:1px dashed rgba(178,183,196,.28);
+  border-radius:6px;padding:6px 8px;margin:4px 0 6px;
+  white-space:pre-wrap;word-break:break-word;
+}
+.tbl{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:4px}
+.tbl th,.tbl td{
+  border:1px solid rgba(178,183,196,.22);
+  padding:3px 6px;text-align:left;color:#e7ebf2;
+}
+.tbl th{
+  background:rgba(0,0,255,.22);color:#fff;font-weight:650;
+}
+.flow{display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin-top:4px;row-gap:6px}
+.pill{
+  background:rgba(0,0,255,.18);
+  border:1px solid rgba(3,255,255,.35);
+  border-radius:6px;padding:4px 8px;
+  font-size:12.5px;color:#03ffff;font-weight:650;
+}
+.arr{color:#f46600;font-size:14px;font-weight:700}
+
+.bottom{
+  grid-column:1/-1;
+  display:grid;grid-template-columns:1.15fr 1.05fr .9fr;gap:10px;
+}
+.bottom .box{min-height:0}
+.iq h2{color:#f46600}
+.iq{--accent:#f46600}
+.iq ol{padding-left:18px;font-size:13.5px;line-height:1.35;color:#e7ebf2}
+.iq li{margin-bottom:3px;padding-left:0}
+.iq li:before{content:none;display:none}
+.kp{--accent:#4fff00}
+.kp h2{color:#4fff00}
+.flowbox{--accent:#03ffff}
+.flowbox h2{color:#03ffff}
+
+.footer{
+  flex:0 0 auto;display:flex;justify-content:space-between;align-items:center;
+  margin-top:8px;padding-top:7px;
+  border-top:1px solid rgba(178,183,196,.16);
+  font-size:12px;color:#6f7480;
+}
+.footer .handle{font-family:'Geist Mono',monospace;color:#b2b7c4;font-size:13px}
+.footer .note{letter-spacing:.04em}
+</style></head>
+<body>
+<div class="frame">
+  <div class="accent-bar"></div>
+  <div class="header">
+  <div class="eyebrow"><span class="dot"></span>Asset Performance · Attune EAM</div>
+  <div class="product">Octave Attune EAM (formerly HxGN EAM)</div>
+  <div class="title">Call Center &amp; Service Requests <span class="badge">Cheat sheet</span></div>
+  <div class="tagline">From the help desk call to a validated service request, work order, case and follow-up.</div>
+</div>
+<div class="grid">
+<style>.grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}</style>
+<div class="box c1"><h2>1. What it is</h2><ul>
+<li>Call Center <b>collects service requests</b>: phone, e-mail, fax, or self-service via the <b>Service Request Portal</b></li>
+<li>Simple ask (office hours) → record, answer, <b>close</b></li>
+<li>Serious ask (chemical spill) → <b>work order</b> + regulatory <b>case</b></li>
+<li>Help desk lives on the <b>Call Center</b> screen</li>
+</ul></div>
+<div class="box c2"><h2>2. Service Code Validation (per org)</h2>
+<table class="tbl"><tr><th>Method</th><th>Matrix lives on</th></tr>
+<tr><td>Department Structure</td><td>Department → Structure tab (Supplier › Service Category › Service Code); pick Department <b>before</b> Equipment</td></tr>
+<tr><td>SDM</td><td>Equipment → Service Delivery Matrix tab (tick the SDM checkbox first); Equipment <b>first</b></td></tr>
+<tr><td>Simplified SDM</td><td>Supplier ↔ Service Code once, then link to equipment; no Department / Category</td></tr>
+</table></div>
+<div class="box c3"><h2>3. SDM roll-down</h2><ul>
+<li>Parent matrix applies to children only if the child has <b>no own SDM records</b></li>
+<li>Child must still have the <b>SDM checkbox</b> ticked, else lookups stay empty (Department excepted)</li>
+<li>All-Departments (and similar) checkboxes save records</li>
+<li>Simplified SDM shows <b>which parent</b> a record came from; skip or stop roll-down</li>
+</ul></div>
+<div class="box c4"><h2>4. Service Codes screen</h2><ul>
+<li>A <b>template WO</b>, template <b>case</b>, or both</li>
+<li>Temporary / Permanent Fix Turnaround → <b>promise dates</b></li>
+<li>Standard Response Time → <b>Deadline</b> (Hours to Deadline refreshes every minute)</li>
+<li>Equipment Usability, Penalty (EAM does not calculate penalties)</li>
+<li>Tabs: Case Tasks, Equipment Classes (clears <b>General</b>), Suppliers, Equipment, Supplier Exclusions</li>
+</ul></div>
+<div class="box c5"><h2>5. Follow-up work</h2><ul>
+<li><b>For Follow-up</b> codes can't have follow-ups themselves (no recursion)</li>
+<li>Follow-up Timing: <b>No follow-up Work</b> · <b>Service Request Follow-up</b> · <b>Work Order Completion</b> · <b>Work Order Creation</b></li>
+<li>Only for WOs <b>created</b> from the Call Center, not linked ones</li>
+</ul></div>
+<div class="box c6"><h2>6. How the WO is built</h2>
+<div class="code">1) Standard WO           → use it
+2) else Task Plan (+Job) → 1 activity
+3) else Trade + Est. Hours + People
+4) else header only, no activity</div><ul>
+<li>WO Type / Class / Priority on the code override the Standard WO</li>
+<li><b>Auto Create WO</b>: on insert only, <b>no duplicate check</b></li>
+</ul></div>
+<div class="box c7"><h2>7. Call Center Setup</h2><ul>
+<li>Defaults: Source <b>CRSC</b>, Type <b>COTP</b>, Status <b>COST</b> (+ Portal variants)</li>
+<li>WO org: SR org → Service Code → Equipment → WO Class → <b>Default WO Org.</b></li>
+<li>Open / Follow-up Request Status <b>when WO Closes</b></li>
+<li>Allow Request to be Closed while WO is Open · Allow New Contact to be Saved</li>
+</ul></div>
+<div class="box c8"><h2>8. Duplicate &amp; recurring checks</h2><ul>
+<li><b>Enable Duplicate WO Check</b>: link existing or create new</li>
+<li>Days to Show Closed WOs: blank none · <b>0</b> today · <b>1</b> today + yesterday</li>
+<li>Filter by WO Types / Statuses, match header equipment, Service Category, Service Code</li>
+<li>Check Duplicate Open / Recurring Closed Requests (same equipment + service code) + Lookback Days</li>
+<li>Duplicate Request set → <b>no WO</b> can be created or linked</li>
+</ul></div>
+<div class="box c9"><h2>9. Knowledge base &amp; bulletins</h2><ul>
+<li>Article: Keywords (case-insensitive), Article Text with hyperlinks, Status <b>KBST</b></li>
+<li>Keyword vs Full Text search; with SDM, Equipment first</li>
+<li><b>KBAVALRV</b> = YES flips the Service Code Validation Filter default</li>
+<li>Top 10 articles need the <b>Top 10 Knowledge Base Article Driver</b> job</li>
+<li>Notices: Start/End Date, Importance High › Normal › Low</li>
+</ul></div>
+<div class="box c10"><h2>10. Call Center screen</h2><ul>
+<li>Find Contact By / Global Search; phone search strips non-numeric characters</li>
+<li>Campus › Building › Floor › Room/Unit; lowest level → Equipment</li>
+<li>Create WO link is <b>protected</b>; linked WO stays editable (Duplicate WO)</li>
+<li><b>Auto Request Case</b> → case in requested status; Priority <b>SRPR</b>, VIP <b>VIPS</b></li>
+<li>Create New Service Request keeps the contact</li>
+</ul></div>
+<div class="bottom">
+<div class="box flowbox"><h2>Flow</h2>
+<div class="flow">
+<span class="pill">Contact</span><span class="arr">→</span>
+<span class="pill">Equipment</span><span class="arr">→</span>
+<span class="pill">Service Code</span><span class="arr">→</span>
+<span class="pill">KB search</span><span class="arr">→</span>
+<span class="pill">Duplicate check</span><span class="arr">→</span>
+<span class="pill">Create WO / Case</span><span class="arr">→</span>
+<span class="pill">Follow-up</span>
+</div></div>
+<div class="box iq"><h2>Consultant tips</h2>
+<ol>
+<li>Choose the validation method per org before loading data</li>
+<li>Auto Create WO / Auto Request Case can create more records than you need</li>
+<li>Portal users need Service Categories set up</li>
+</ol></div>
+<div class="box kp"><h2>Key points</h2>
+<ul>
+<li>Multiple equipment not allowed with SDM</li>
+<li>WO fields copied once, not synced later</li>
+<li>Close a request → its duplicates close too</li>
+</ul></div>
+</div>
+
+</div>
+  <div class="footer">
+    <span class="note">Not affiliated with Octave · educational summary</span>
+    <span class="handle">Rahul Kumar</span>
+  </div>
+</div>
+</body></html>
