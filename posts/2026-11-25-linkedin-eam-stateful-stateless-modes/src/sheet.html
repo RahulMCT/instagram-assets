@@ -1,0 +1,229 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>/* Octave Attune EAM LinkedIn cheat-sheet theme
+   Colours from octave.com CSS tokens (--oct-*), Nov 2026.
+   Fonts: Inter / Geist Mono stand in for proprietary Octave Sans / Display.
+   Do NOT embed the Octave logo (trademark). */
+
+@font-face{font-family:'Inter';src:url('file:///usr/share/fonts/truetype/sand-box/google/Inter/Inter-VariableFont_opsz,wght.ttf');font-weight:100 900;font-style:normal}
+@font-face{font-family:'Geist Mono';src:url('file:///usr/share/fonts/truetype/sand-box/google/Geist Mono/GeistMono-VariableFont_wght.ttf');font-weight:100 900;font-style:normal}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1350px;overflow:hidden}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:#1a1a1f;
+  color:#e7ebf2;
+  position:relative;
+}
+/* subtle orbit / wireframe feel — no logo */
+body::before{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse 80% 50% at 110% -10%, rgba(0,0,255,.18), transparent 55%),
+    radial-gradient(ellipse 60% 40% at -15% 110%, rgba(244,102,0,.14), transparent 50%),
+    radial-gradient(ellipse 50% 35% at 90% 90%, rgba(255,0,199,.10), transparent 55%);
+}
+body::after{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.35;
+  background:
+    repeating-linear-gradient(115deg, transparent 0 46px, rgba(178,183,196,.04) 46px 47px);
+}
+
+.frame{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;padding:18px 24px 14px}
+.accent-bar{
+  height:4px;border-radius:2px;margin-bottom:10px;flex:0 0 auto;
+  background:linear-gradient(90deg,#0000ff 0%,#03ffff 22%,#f46600 48%,#ff00c7 74%,#9933ff 100%);
+}
+
+.header{flex:0 0 auto;margin-bottom:8px}
+.eyebrow{
+  display:flex;align-items:center;gap:10px;margin-bottom:6px;
+  font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#b2b7c4;font-weight:600;
+}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:#03ffff;box-shadow:0 0 8px #03ffff}
+.product{
+  font-size:14px;color:#6f7480;font-weight:500;letter-spacing:.02em;margin-bottom:8px;
+}
+.title{
+  font-size:32px;font-weight:700;color:#fff;letter-spacing:-.02em;line-height:1.15;
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+}
+.title .badge{
+  font-size:12px;font-weight:700;letter-spacing:.14em;
+  background:linear-gradient(90deg,#0000ff,#03ffff);
+  color:#fff;padding:5px 10px;border-radius:999px;text-transform:uppercase;
+}
+.tagline{font-size:15px;color:#b2b7c4;margin-top:6px;line-height:1.35;font-weight:450}
+
+.grid{
+  flex:1 1 auto;min-height:0;
+  display:grid;grid-template-columns:1fr 1fr;gap:9px;align-content:stretch;
+}
+.box{
+  background:rgba(62,64,71,.55);
+  border:1px solid rgba(178,183,196,.18);
+  border-radius:10px;
+  padding:9px 11px;
+  position:relative;
+  overflow:hidden;
+  backdrop-filter:blur(2px);
+}
+.box::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:var(--accent,#03ffff);
+}
+.box h2{
+  font-size:17px;font-weight:700;color:var(--accent,#03ffff);
+  margin-bottom:5px;line-height:1.2;letter-spacing:-.01em;
+}
+.box p,.box li{font-size:14.2px;line-height:1.30;color:#e7ebf2;font-weight:450}
+.box ul{list-style:none;padding:0}
+.box li{padding-left:14px;position:relative;margin-bottom:3px}
+.box li:before{
+  content:'';position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:1px;
+  background:var(--accent,#03ffff);opacity:.85;
+}
+.box b,.box strong{color:#fff;font-weight:650}
+
+/* accent cycle for numbered sections */
+.c1{--accent:#03ffff}.c2{--accent:#f46600}.c3{--accent:#7890ee}
+.c4{--accent:#4fff00}.c5{--accent:#ff00c7}.c6{--accent:#fff500}
+.c7{--accent:#03ffff}.c8{--accent:#9933ff}.c9{--accent:#f46600}.c10{--accent:#1e88e5}
+
+.code{
+  font-family:'Geist Mono',ui-monospace,monospace;
+  font-size:12.5px;line-height:1.4;color:#e7ebf2;
+  background:rgba(26,26,31,.75);
+  border:1px dashed rgba(178,183,196,.28);
+  border-radius:6px;padding:6px 8px;margin:4px 0 6px;
+  white-space:pre-wrap;word-break:break-word;
+}
+.tbl{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:4px}
+.tbl th,.tbl td{
+  border:1px solid rgba(178,183,196,.22);
+  padding:3px 6px;text-align:left;color:#e7ebf2;
+}
+.tbl th{
+  background:rgba(0,0,255,.22);color:#fff;font-weight:650;
+}
+.flow{display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin-top:4px;row-gap:6px}
+.pill{
+  background:rgba(0,0,255,.18);
+  border:1px solid rgba(3,255,255,.35);
+  border-radius:6px;padding:4px 8px;
+  font-size:12.5px;color:#03ffff;font-weight:650;
+}
+.arr{color:#f46600;font-size:14px;font-weight:700}
+
+.bottom{
+  grid-column:1/-1;
+  display:grid;grid-template-columns:1.15fr 1.05fr .9fr;gap:10px;
+}
+.bottom .box{min-height:0}
+.iq h2{color:#f46600}
+.iq{--accent:#f46600}
+.iq ol{padding-left:18px;font-size:13.5px;line-height:1.35;color:#e7ebf2}
+.iq li{margin-bottom:3px;padding-left:0}
+.iq li:before{content:none;display:none}
+.kp{--accent:#4fff00}
+.kp h2{color:#4fff00}
+.flowbox{--accent:#03ffff}
+.flowbox h2{color:#03ffff}
+
+.footer{
+  flex:0 0 auto;display:flex;justify-content:space-between;align-items:center;
+  margin-top:8px;padding-top:7px;
+  border-top:1px solid rgba(178,183,196,.16);
+  font-size:12px;color:#6f7480;
+}
+.footer .handle{font-family:'Geist Mono',monospace;color:#b2b7c4;font-size:13px}
+.footer .note{letter-spacing:.04em}
+</style></head>
+<body>
+<div class="frame">
+  <div class="accent-bar"></div>
+  <div class="header">
+  <div class="eyebrow"><span class="dot"></span>Asset Performance · Attune EAM</div>
+  <div class="product">Octave Attune EAM (formerly HxGN EAM)</div>
+  <div class="title">Stateful vs Stateless Modes <span class="badge">Cheat sheet</span></div>
+  <div class="tagline">Sticky sessions in JVM memory, or any JVM plus a Couchbase cache. Here is the setup.</div>
+</div>
+<div class="grid">
+<style>.grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}</style>
+<div class="box c1"><h2>1. Two session modes</h2>
+<table class="tbl"><tr><th>Mode</th><th>How sessions work</th></tr>
+<tr><td><b>Stateful</b> (default)</td><td>Sticky sessions ON, session kept <b>in JVM memory</b></td></tr>
+<tr><td><b>Stateless</b></td><td>Sticky sessions OFF, <b>any JVM</b> serves any request, session in an <b>external cache</b></td></tr>
+</table><ul><li>Stateless needs EAM on <b>JBoss</b> Application Server</li></ul></div>
+<div class="box c2"><h2>2. Key terms</h2><ul>
+<li><b>JVM</b>: one process running JBoss + all EAM code</li>
+<li>Many JVMs: <b>jboss.instances</b> &gt; 1 in extended_properties.xml and/or several installs behind a <b>load balancer</b></li>
+<li><b>Sticky session</b>: session tied to the JVM that created it, via the <b>JSESSIONID</b> cookie</li>
+</ul></div>
+<div class="box c3"><h2>3. Which one to pick?</h2>
+<table class="tbl"><tr><th>Stateful</th><th>Stateless</th></tr>
+<tr><td>No extra cache app to buy, run or maintain</td><td>Supports <b>Zero Downtime Upgrades</b> (ZDU)</td></tr>
+<tr><td>No extra servers, RAM, fast network</td><td>Add/remove JVMs <b>dynamically</b> with load</td></tr>
+</table></div>
+<div class="box c4"><h2>4. Couchbase cluster rules</h2><ul>
+<li>Stateless cache = <b>Couchbase Server</b> (distributed cache)</li>
+<li>EAM <b>won't run</b> if Couchbase is down → plan redundancy</li>
+<li>Min <b>2 nodes</b>, with replication; one node per (virtual) machine</li>
+<li>EAM and Couchbase on <b>different machines</b>; all nodes same 64-bit OS</li>
+<li>Same LAN, <b>static IP</b> (dynamic IP + default config = unusable node)</li>
+</ul></div>
+<div class="box c5"><h2>5. Memory &amp; install</h2><ul>
+<li>Same Couchbase RAM on every node, <b>no virtual memory</b></li>
+<li>Min <b>4GB</b> per node (half data, half replicas) → VM with <b>8GB+</b></li>
+<li>Brief names <b>version 5.0.1, 64-bit</b>, Community or Enterprise</li>
+<li>Admin UI: <b>http://server:8091</b> → Start a New Cluster, Data Service quota ≥ 4096MB, bucket type Couchbase</li>
+<li>2nd server: join cluster → Server Nodes → <b>Rebalance</b> (even when empty)</li>
+</ul></div>
+<div class="box c6"><h2>6. extended_properties &lt;eamcache&gt;</h2>
+<div class="code">statetype         = stateless
+externcachehost   = IP of Couchbase node 1 (required)
+externcachehost2  = IP of node 2 (optional, recommended)
+bucket / bucketPassword = blank if 'default' bucket
+sysrefreshcache   = 5–60 min (false → 15 min)
+oldbaseuri        = used for ZDU</div></div>
+<div class="box c7"><h2>7. Clusters &amp; shared paths</h2><ul>
+<li>All EAM instances in one cluster → <b>same</b> Couchbase cluster</li>
+<li>Unrelated installs (PROD / TEST / TRAIN) → <b>own</b> Couchbase cluster each</li>
+<li>MPConfiguration.xml.vm paths on a <b>network share</b>: fm-definition.base-dir, attach-definition.base-dir, DocUpload.UPLOADDIR, ExportConfig.ExportConfigDir</li>
+<li>Databridge: move <b>Document.home</b>, keep Configuration.home</li>
+</ul></div>
+<div class="box c8"><h2>8. Load balancer &amp; SSO</h2><ul>
+<li>Proxy must <b>not enforce sticky sessions</b> on JSESSIONID in stateless mode</li>
+<li>Proxy must <b>rewrite EAM redirects</b> to its own address, or browsers bypass it</li>
+<li>SSO: <b>AppServerHost</b> and <b>logonURL</b> point to the LB, not the app server</li>
+<li>sp.xml.tmpl: proxy host:port, <b>https</b>, keep @BASE_URI@; new base URI → new ADFS Relying Party</li>
+</ul></div>
+<div class="bottom">
+<div class="box flowbox"><h2>Flow</h2>
+<div class="flow">
+<span class="pill">Build 2+ node Couchbase</span><span class="arr">→</span>
+<span class="pill">Rebalance</span><span class="arr">→</span>
+<span class="pill">&lt;eamcache&gt; stateless</span><span class="arr">→</span>
+<span class="pill">Shared file paths</span><span class="arr">→</span>
+<span class="pill">LB: no sticky</span>
+</div></div>
+<div class="box iq"><h2>Consultant tips</h2>
+<ol>
+<li>Always fill externcachehost2</li>
+<li>Use IPs, not names, for cache hosts</li>
+<li>Light non-PROD: 1 node, no replication is OK</li>
+</ol></div>
+<div class="box kp"><h2>Key points</h2>
+<ul>
+<li>Stateful is the default</li>
+<li>Stateless = JBoss + Couchbase</li>
+<li>No cache, no EAM</li>
+</ul></div>
+</div>
+</div>
+  <div class="footer">
+    <span class="note">Not affiliated with Octave · educational summary</span>
+    <span class="handle">Rahul Kumar</span>
+  </div>
+</div>
+</body></html>
